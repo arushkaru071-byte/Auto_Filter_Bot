@@ -1,13 +1,16 @@
 class script(object):
-    START_TXT = """<b>Hᴇʟʟᴏ {}, {}</b>
+    START_TXT = """<b>👋Hᴇʟʟᴏ {}, {}</b>
 
-<b>Mʏ Nᴀᴍᴇ Is <a href=https://t.me/{}>{}</a>, I ᴀᴍ Tʜᴇ Mᴏsᴛ Pᴏᴡᴇʀғᴜʟʟ Aᴜᴛᴏ Fɪʟᴛᴇʀ Bᴏᴛ. I Cᴀɴ Pʀᴏᴠɪᴅᴇ Mᴏᴠɪᴇs Fᴏʀ Yᴏᴜ Jᴜsᴛ Aᴅᴅ Mᴇ Iɴ Yᴏᴜʀ Gʀᴏᴜᴘ Oʀ Jᴏɪɴ Oᴜʀ Gʀᴏᴜᴘs.</b>
+<b>Mʏ Nᴀᴍᴇ Is <a href=https://t.me/{}>{}</a>,
+
+I ᴀᴍ Tʜᴇ Mᴏsᴛ Pᴏᴡᴇʀғᴜʟʟ Aᴜᴛᴏ Fɪʟᴛᴇʀ Bᴏᴛ. I Cᴀɴ Pʀᴏᴠɪᴅᴇ Mᴏᴠɪᴇs Fᴏʀ Yᴏᴜ Jᴜsᴛ Aᴅᴅ Mᴇ Iɴ Yᴏᴜʀ Gʀᴏᴜᴘ Oʀ Jᴏɪɴ Oᴜʀ Gʀᴏᴜᴘs.</b>
 """
 
 
     GSTART_TXT = """<b>Hᴇʟʟᴏ {},</b>
 
-<b>Mʏ Nᴀᴍᴇ Is <a href=https://t.me/{}>{}</a>, I ᴀᴍ Tʜᴇ Mᴏsᴛ Pᴏᴡᴇʀғᴜʟʟ Aᴜᴛᴏ Fɪʟᴛᴇʀ Bᴏᴛ. I Cᴀɴ Pʀᴏᴠɪᴅᴇ Mᴏᴠɪᴇs Fᴏʀ Yᴏᴜ Jᴜsᴛ Aᴅᴅ Mᴇ Iɴ Yᴏᴜʀ Gʀᴏᴜᴘ Oʀ Jᴏɪɴ Oᴜʀ Gʀᴏᴜᴘs.</b>"""
+<b>Mʏ Nᴀᴍᴇ Is <a href=https://t.me/{}>{}</a>, 
+I ᴀᴍ Tʜᴇ Mᴏsᴛ Pᴏᴡᴇʀғᴜʟʟ Aᴜᴛᴏ Fɪʟᴛᴇʀ Bᴏᴛ. I Cᴀɴ Pʀᴏᴠɪᴅᴇ Mᴏᴠɪᴇs Fᴏʀ Yᴏᴜ Jᴜsᴛ Aᴅᴅ Mᴇ Iɴ Yᴏᴜʀ Gʀᴏᴜᴘ Oʀ Jᴏɪɴ Oᴜʀ Gʀᴏᴜᴘs.</b>"""
 
     
     HELP_TXT = """<b>
@@ -15,21 +18,22 @@ class script(object):
  <blockquote>ʜᴏᴡ ᴛᴏ ʀᴇǫᴜᴇꜱᴛ ᴅʀᴀᴍᴀꜱ & ᴍᴏᴠɪᴇꜱ</blockquote>
 
 ❀ ꜱᴇᴀʀᴄʜ ᴛʜᴇ ᴄᴏʀʀᴇᴄᴛ ɴᴀᴍᴇ ᴏɴ ɢᴏᴏɢʟᴇ.  
-❀ ꜱᴇɴᴅ ᴛʜᴇ ɴᴀᴍᴇ ɪɴ ᴛʜᴇ ɢʀᴏᴜᴘ.  
 ❀ ᴜꜱᴇ ᴛʜɪꜱ ꜰᴏʀᴍᴀᴛ:  
 
-✰ ꜰᴏʀ ꜱᴇʀɪᴇꜱ:  
+✰ ꜰᴏʀ ꜱᴇʀɪᴇꜱ: 
+
 ☞︎︎︎ ᴅʀᴀᴍᴀ ɴᴀᴍᴇ + S01 (ꜰᴏʀ ꜱᴇᴀꜱᴏɴ 1, ᴄʜᴀɴɢᴇ ꜰᴏʀ ᴏᴛʜᴇʀꜱ)  
 
 ✰ ꜰᴏʀ ᴍᴏᴠɪᴇꜱ:  
+
 ☞︎︎︎ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ᴏʀ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ + ʏᴇᴀʀ (ᴇx: ᴊᴏᴋᴇʀ 2019)   
 
-✌︎ ꜰᴏʟʟᴏᴡ ᴛʜᴇꜱᴇ ꜱᴛᴇᴘꜱ!
+✌️ ꜰᴏʟʟᴏᴡ ᴛʜᴇꜱᴇ ꜱᴛᴇᴘꜱ!✌️
 </b>"""
 
     ABOUT_TXT = """<b>╭────[ ᴍʏ ᴅᴇᴛᴀɪʟs ]────⍟
 ├⍟ Mʏ Nᴀᴍᴇ : <a href=https://t.me/{}>{}</a>
-├⍟ Dᴇᴠᴇʟᴏᴘᴇʀ : <a href={}>ᴏᴡɴᴇʀ</a> 
+├⍟ Dᴇᴠᴇʟᴏᴘᴇʀ : <a href={}>ᴀsᴡᴀɴᴛʜ♕︎</a> 
 ├⍟ Lɪʙʀᴀʀʏ : <a href='https://docs.pyrogram.org/'>ᴘʏʀᴏɢʀᴀᴍ</a>
 ├⍟ Lᴀɴɢᴜᴀɢᴇ : <a href='https://www.python.org/download/releases/3.0/'>ᴘʏᴛʜᴏɴ 𝟹</a> 
 ├⍟ Dᴀᴛᴀʙᴀsᴇ : <a href='https://www.mongodb.com/'>ᴍᴏɴɢᴏ ᴅʙ</a> 
@@ -217,7 +221,7 @@ Nᴀᴍᴇ : {}
 
 Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
     
-    CAPTION = """<b><a href="https://t.me/dreamxbotz">{file_name}</a></b>\n\n<b>⚜️ Powered By : <a href="https://t.me/dreamxbotz">[ ᴅʀᴇᴀᴍxʙᴏᴛᴢ ]</a></b>"""
+    CAPTION = """<b><a href="https://t.me/Cinema_Lokam_Movies_Group">{file_name}</a></b>\n\n<b>⚜️ Powered By : <a href="https://t.me/Cinema_Lokam_Movies_Group">[ Cɪɴᴇᴍᴀ Lᴏᴋᴀᴍ 亗 ]</a></b>"""
 
     
     MOVIE_UPDATE_NOTIFY_TXT = """
