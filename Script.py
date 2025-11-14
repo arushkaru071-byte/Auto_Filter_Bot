@@ -33,13 +33,13 @@ I ᴀᴍ Tʜᴇ Mᴏsᴛ Pᴏᴡᴇʀғᴜʟʟ Aᴜᴛᴏ Fɪʟᴛᴇʀ Bᴏᴛ.
 
     ABOUT_TXT = """<b>╭────[ ᴍʏ ᴅᴇᴛᴀɪʟs ]────⍟
 ├⍟ Mʏ Nᴀᴍᴇ : <a href=https://t.me/{}>{}</a>
-├⍟ Dᴇᴠᴇʟᴏᴘᴇʀ : <a href={https://t.me/Ascreator_10}>ᴀsᴡᴀɴᴛʜ♕︎</a> 
-├⍟ Mʏ Bᴇsᴛ Fʀɪᴇɴᴅ : <a href={tg://settings}>ᴛʜɪs ᴘᴇʀsᴏɴ</a> 
+├⍟ Dᴇᴠᴇʟᴏᴘᴇʀ : <a href='https://t.me/Ascreator_10'>ᴀsᴡᴀɴᴛʜ♕︎</a> 
+├⍟ Mʏ Bᴇsᴛ Fʀɪᴇɴᴅ : <a href='tg://settings'>ᴛʜɪs ᴘᴇʀsᴏɴ</a> 
 ├⍟ Lɪʙʀᴀʀʏ : <a href='https://docs.pyrogram.org/'>ᴘʏʀᴏɢʀᴀᴍ</a>
 ├⍟ Lᴀɴɢᴜᴀɢᴇ : <a href='https://www.python.org/download/releases/3.0/'>ᴘʏᴛʜᴏɴ 𝟹</a> 
 ├⍟ Dᴀᴛᴀʙᴀsᴇ : <a href='https://www.mongodb.com/'>ᴍᴏɴɢᴏ ᴅʙ</a> 
 ├⍟ Bᴏᴛ Sᴇʀᴠᴇʀ : <a href='https://heroku.com/'>ʜᴇʀᴏᴋᴜ</a> 
-├⍟ Bᴜɪʟᴅ Sᴛᴀᴛᴜs : ᴠ1.4 [ ꜱᴛᴀʙʟᴇ ]
+├⍟ Bᴜɪʟᴅ Sᴛᴀᴛᴜs : ᴠ2.7.1 [ ꜱᴛᴀʙʟᴇ ]
 ╰───────────────⍟</b>"""
     RESTART_TXT = """
 <b>{} Bᴏᴛ Rᴇsᴛᴀʀᴛᴇᴅ !
@@ -221,7 +221,13 @@ Nᴀᴍᴇ : {}
 
 Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
     
-    CAPTION = """<b><a href="https://t.me/Cinema_Lokam_Movies_Group">{file_name}</a></b>\n\n<b>⚜️ Powered By : <a href="https://t.me/Cinema_Lokam_Movies_Group">[ Cɪɴᴇᴍᴀ Lᴏᴋᴀᴍ 亗 ]</a></b>"""
+    CAPTION = """"<b>📂 ғɪʟᴇɴᴀᴍᴇ : {file_name}
+    🗃️ sɪᴢᴇ : {file_name} 
+
+╔═══ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ═══╗ 
+➲ <a href=https://t.me/Cinema_Lokam_Movies_Group> @Cinema_Lokam </a>
+➲ <a href=https://t.me/Cinema_Updates_OTT> @Cinema_Updates_OTT </a>
+╚═══ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ═══╝</b>"""
 
     
     MOVIE_UPDATE_NOTIFY_TXT = """
