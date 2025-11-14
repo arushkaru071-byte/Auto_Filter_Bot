@@ -1,11 +1,11 @@
 class script(object):
-    START_TXT = """<b>Hᴇʟʟᴏ {}, {}</b>
+    START_TXT = """<b>ʜᴇʏ {}, {}</b>
 
 <b>ɪ ᴀᴍ ᴀ ᴘᴏᴡᴇʀꜰᴜʟ ᴀᴜᴛᴏꜰɪʟᴛᴇʀ ʙᴏᴛ. ʏᴏᴜ ᴄᴀɴ ᴜsᴇ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ɪ ᴡɪʟʟ ɢɪᴠᴇ ᴍᴏᴠɪᴇs ᴏʀ sᴇʀɪᴇs ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴘᴍ !! 😍</b>
 <blockquote><b>🌿 ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ :  <a href=https://t.me/Cinema_Lokam_Movies_Group>ᴄɪɴᴇᴍᴀ ʟᴏᴋᴀᴍ</a></b></blockquote>"""
 
 
-    GSTART_TXT = """<b>Hᴇʟʟᴏ {},</b>
+    GSTART_TXT = """<b>ʜᴇʏ {},</b>
 
 <b>ɪ ᴀᴍ ᴀ ᴘᴏᴡᴇʀꜰᴜʟ ᴀᴜᴛᴏꜰɪʟᴛᴇʀ ʙᴏᴛ. ʏᴏᴜ ᴄᴀɴ ᴜsᴇ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ɪ ᴡɪʟʟ ɢɪᴠᴇ ᴍᴏᴠɪᴇs ᴏʀ sᴇʀɪᴇs ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴘᴍ !! 😍</b>
 <blockquote><b>🌿 ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ :  <a href=https://t.me/Cinema_Lokam_Movies_Group>ᴄɪɴᴇᴍᴀ ʟᴏᴋᴀᴍ</a></b></blockquote>"""
