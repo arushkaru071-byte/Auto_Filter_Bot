@@ -33,7 +33,8 @@ I ᴀᴍ Tʜᴇ Mᴏsᴛ Pᴏᴡᴇʀғᴜʟʟ Aᴜᴛᴏ Fɪʟᴛᴇʀ Bᴏᴛ.
 
     ABOUT_TXT = """<b>╭────[ ᴍʏ ᴅᴇᴛᴀɪʟs ]────⍟
 ├⍟ Mʏ Nᴀᴍᴇ : <a href=https://t.me/{}>{}</a>
-├⍟ Dᴇᴠᴇʟᴏᴘᴇʀ : <a href={}>ᴀsᴡᴀɴᴛʜ♕︎</a> 
+├⍟ Dᴇᴠᴇʟᴏᴘᴇʀ : <a href={https://t.me/Ascreator_10}>ᴀsᴡᴀɴᴛʜ♕︎</a> 
+├⍟ Mʏ Bᴇsᴛ Fʀɪᴇɴᴅ : <a href={tg://settings}>ᴛʜɪs ᴘᴇʀsᴏɴ</a> 
 ├⍟ Lɪʙʀᴀʀʏ : <a href='https://docs.pyrogram.org/'>ᴘʏʀᴏɢʀᴀᴍ</a>
 ├⍟ Lᴀɴɢᴜᴀɢᴇ : <a href='https://www.python.org/download/releases/3.0/'>ᴘʏᴛʜᴏɴ 𝟹</a> 
 ├⍟ Dᴀᴛᴀʙᴀsᴇ : <a href='https://www.mongodb.com/'>ᴍᴏɴɢᴏ ᴅʙ</a> 
@@ -61,7 +62,6 @@ I ᴀᴍ Tʜᴇ Mᴏsᴛ Pᴏᴡᴇʀғᴜʟʟ Aᴜᴛᴏ Fɪʟᴛᴇʀ Bᴏᴛ.
 │
 ├⋟ ᴀʟʟ ᴜsᴇʀs ⋟ <code>{}</code>
 ├⋟ ᴀʟʟ ɢʀᴏᴜᴘs ⋟ <code>{}</code>
-├⋟ ᴘʀᴇᴍɪᴜᴍ ᴜꜱᴇʀꜱ ⋟ <code>{}</code>
 ├⋟ ᴀʟʟ ꜰɪʟᴇs ⋟ <code>{}</code>
 ├⋟ ᴜsᴇᴅ sᴛᴏʀᴀɢᴇ ⋟ <code>{}</code>
 ├⋟ ꜰʀᴇᴇ sᴛᴏʀᴀɢᴇ ⋟ <code>{}</code>
