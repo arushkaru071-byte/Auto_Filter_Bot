@@ -82,9 +82,9 @@ async def start(client, message):
         return         
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [[
-                    InlineKeyboardButton('❤️ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ❤️', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+                    InlineKeyboardButton('⇉ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⇇', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
                 ],[
-                    InlineKeyboardButton('🍁 Update Channel 🍁', url=UPDATE_CHNL_LNK)
+                    InlineKeyboardButton('✩ Uᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ ✩', url=UPDATE_CHNL_LNK)
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply(script.GSTART_TXT.format(message.from_user.mention if message.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), reply_markup=reply_markup, disable_web_page_preview=True)
@@ -99,26 +99,29 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
         buttons = [[
-                    InlineKeyboardButton('🔰 ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ 🔰', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+                    InlineKeyboardButton('⇉ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⇇', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
                 ],[
-                    InlineKeyboardButton(' ʜᴇʟᴘ 📢', callback_data='help'),
-                    InlineKeyboardButton(' ᴀʙᴏᴜᴛ 📖', callback_data='about')
+                    InlineKeyboardButton('𖦹 Hᴇʟᴘ 𖦹', callback_data='help'),
+                    InlineKeyboardButton('𖦹 Aʙᴏᴜᴛ 𖦹', callback_data='about')
                 ],[
-                    InlineKeyboardButton('ᴛᴏᴘ sᴇᴀʀᴄʜɪɴɢ ⭐', callback_data="topsearch"),
-                    InlineKeyboardButton('ᴜᴘɢʀᴀᴅᴇ 🎟', callback_data="premium_info"),
-                ]]
+                    InlineKeyboardButton('✰Tᴏᴘ Sᴇᴀʀᴄʜɪɴɢ✰', callback_data="topsearch"),
+                    InlineKeyboardButton('≛ Mᴏᴠɪᴇ Gʀᴏᴜᴘ ≛', url='https://t.me/Cinema_Lokam_Movies_Group'),
+                ],[
+                    InlineKeyboardButton('🔍 Fɪɴᴅ Mᴏᴠɪᴇs Hᴇʀᴇ 🔍', switch_inline_query_current_chat="")
+                 ]]
+                    
         reply_markup = InlineKeyboardMarkup(buttons)
         current_time = datetime.now(pytz.timezone(TIMEZONE))
         curr_time = current_time.hour        
         if curr_time < 12:
-            gtxt = "ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ 🌞" 
+            gtxt = "𝐺𝑜𝑜𝑑 𝑀𝑜𝑟𝑛𝑖𝑛𝑔 🌞" 
         elif curr_time < 17:
-            gtxt = "ɢᴏᴏᴅ ᴀғᴛᴇʀɴᴏᴏɴ 🌓" 
+            gtxt = "𝐺𝑜𝑜𝑑 𝐴𝑓𝑡𝑒𝑟𝑛𝑜𝑜𝑛 🌓" 
         elif curr_time < 21:
-            gtxt = "ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ 🌘"
+            gtxt = "𝐺𝑜𝑜𝑑 𝐸𝑣𝑒𝑛𝑖𝑛𝑔 🌘"
         else:
-            gtxt = "ɢᴏᴏᴅ ɴɪɢʜᴛ 🌑"
-        m=await message.reply_text("⏳")
+            gtxt = "𝐺𝑜𝑜𝑑 𝑁𝑖𝑔ℎ𝑡 🌑"
+        m=await message.reply_sticker("CAACAgUAAxkBAAIC6Gg3TmWNmLphliv-9GCPsdn5mICBAAIEAAPBJDExieUdbguzyBAeBA")
         await asyncio.sleep(0.4)
         await m.delete()        
         await message.reply_photo(
@@ -131,26 +134,28 @@ async def start(client, message):
 
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
         buttons = [[
-                    InlineKeyboardButton('🔰 ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ 🔰', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+                    InlineKeyboardButton('⇉ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⇇', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
                 ],[
-                    InlineKeyboardButton(' ʜᴇʟᴘ 📢', callback_data='help'),
-                    InlineKeyboardButton(' ᴀʙᴏᴜᴛ 📖', callback_data='about')
+                    InlineKeyboardButton('𖦹 Hᴇʟᴘ 𖦹', callback_data='help'),
+                    InlineKeyboardButton('𖦹 Aʙᴏᴜᴛ 𖦹', callback_data='about')
                 ],[
-                    InlineKeyboardButton('ᴛᴏᴘ sᴇᴀʀᴄʜɪɴɢ ⭐', callback_data="topsearch"),
-                    InlineKeyboardButton('ᴜᴘɢʀᴀᴅᴇ 🎟', callback_data="premium_info"),
-                ]]
+                    InlineKeyboardButton('✰Tᴏᴘ Sᴇᴀʀᴄʜɪɴɢ✰', callback_data="topsearch"),
+                    InlineKeyboardButton('≛ Mᴏᴠɪᴇ Gʀᴏᴜᴘ ≛', url='https://t.me/Cinema_Lokam_Movies_Group'),
+                ],[
+                    InlineKeyboardButton('🔍 Fɪɴᴅ Mᴏᴠɪᴇs Hᴇʀᴇ 🔍', switch_inline_query_current_chat="")
+                 ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         current_time = datetime.now(pytz.timezone(TIMEZONE))
         curr_time = current_time.hour        
         if curr_time < 12:
-            gtxt = "ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ 🌞" 
+            gtxt = "𝐺𝑜𝑜𝑑 𝑀𝑜𝑟𝑛𝑖𝑛𝑔 🌞" 
         elif curr_time < 17:
-            gtxt = "ɢᴏᴏᴅ ᴀғᴛᴇʀɴᴏᴏɴ 🌓" 
+            gtxt = "𝐺𝑜𝑜𝑑 𝐴𝑓𝑡𝑒𝑟𝑛𝑜𝑜𝑛 🌓" 
         elif curr_time < 21:
-            gtxt = "ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ 🌘"
+            gtxt = "𝐺𝑜𝑜𝑑 𝐸𝑣𝑒𝑛𝑖𝑛𝑔 🌘"
         else:
-            gtxt = "ɢᴏᴏᴅ ɴɪɢʜᴛ 🌑"
-        m=await message.reply_text("⏳")
+            gtxt = "𝐺𝑜𝑜𝑑 𝑁𝑖𝑔ℎ𝑡 🌑"
+        m=await message.reply_sticker("CAACAgUAAxkBAAIC6Gg3TmWNmLphliv-9GCPsdn5mICBAAIEAAPBJDExieUdbguzyBAeBA")
         await asyncio.sleep(0.4)
         await m.delete()        
         await message.reply_photo(
