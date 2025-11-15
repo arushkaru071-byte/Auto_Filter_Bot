@@ -57,23 +57,24 @@ class script(object):
 
     MULTI_STATUS_TXT = """<b>╭────[ 🗃 ᴅᴀᴛᴀʙᴀsᴇ 1 🗃] ────⍟</b>
 │
-├⋟ ᴀʟʟ ᴜsᴇʀs ⋟ <code>{}</code>
-├⋟ ᴀʟʟ ɢʀᴏᴜᴘs ⋟ <code>{}</code>
-├⋟ ᴀʟʟ ꜰɪʟᴇs ⋟ <code>{}</code>
+├⋟ ᴛᴏᴛᴀʟ ꜰɪʟᴇs ⋟ <code>{}</code>
 ├⋟ ᴜsᴇᴅ sᴛᴏʀᴀɢᴇ ⋟ <code>{}</code>
 ├⋟ ꜰʀᴇᴇ sᴛᴏʀᴀɢᴇ ⋟ <code>{}</code>
 │
 <b>├────[ 🗳 ᴅᴀᴛᴀʙᴀsᴇ 2 🗳 ]────⍟</b>   
 │
-├⋟ ᴀʟʟ ꜰɪʟᴇs ⋟ <code>{}</code>
-├⋟ ꜱɪᴢᴇ ⋟ <code>{}</code>
-├⋟ ꜰʀᴇᴇ ⋟ <code>{}</code>
+├⋟ ᴛᴏᴛᴀʟ ꜰɪʟᴇs ⋟ <code>{}</code>
+├⋟ ᴜsᴇᴅ sᴛᴏʀᴀɢᴇ ⋟ <code>{}</code>
+├⋟ ꜰʀᴇᴇ sᴛᴏʀᴀɢᴇ ⋟ <code>{}</code
 │
 <b>├────[ 🤖 ʙᴏᴛ ᴅᴇᴛᴀɪʟs 🤖 ]────⍟</b>   
 │
 ├⋟ ᴜᴘᴛɪᴍᴇ ⋟ {}
 ├⋟ ʀᴀᴍ ⋟ <code>{}%</code>
-├⋟ ᴄᴘᴜ ⋟ <code>{}%</code>   
+├⋟ ᴄᴘᴜ ⋟ <code>{}%</code> 
+├⋟ ᴀʟʟ ᴜsᴇʀs ⋟ <code>{}</code>
+├⋟ ᴀʟʟ ɢʀᴏᴜᴘs ⋟ <code>{}</code>
+│
 │
 ├⋟ ʙᴏᴛʜ ᴅʙ ꜰɪʟᴇ'ꜱ: <code>{}</code>
 │
