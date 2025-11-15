@@ -1448,25 +1448,27 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "start":
         buttons = [[
-                    InlineKeyboardButton('🔰 ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ 🔰', url=f'http://telegram.me/{temp.U_NAME}?startgroup=true')
+                    InlineKeyboardButton('⇉ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⇇', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
                 ],[
-                    InlineKeyboardButton(' ʜᴇʟᴘ 📢', callback_data='help'),
-                    InlineKeyboardButton(' ᴀʙᴏᴜᴛ 📖', callback_data='about')
+                    InlineKeyboardButton('𖦹 Hᴇʟᴘ 𖦹', callback_data='help'),
+                    InlineKeyboardButton('𖦹 Aʙᴏᴜᴛ 𖦹', callback_data='about')
                 ],[
-                    InlineKeyboardButton('ᴛᴏᴘ sᴇᴀʀᴄʜɪɴɢ ⭐', callback_data="topsearch"),
-                     InlineKeyboardButton('ᴜᴘɢʀᴀᴅᴇ 🎟', callback_data="premium_info"),
-                ]]
+                    InlineKeyboardButton('✰Tᴏᴘ Sᴇᴀʀᴄʜɪɴɢ✰', callback_data="topsearch"),
+                    InlineKeyboardButton('≛ Mᴏᴠɪᴇ Gʀᴏᴜᴘ ≛', url='https://t.me/Cinema_Lokam_Movies_Group'),
+                ],[
+                    InlineKeyboardButton('🔍 Fɪɴᴅ Mᴏᴠɪᴇs Hᴇʀᴇ 🔍', switch_inline_query_current_chat="")
+                 ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         current_time = datetime.now(pytz.timezone(TIMEZONE))
         curr_time = current_time.hour
         if curr_time < 12:
-            gtxt = "ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ 🌞"
+            gtxt = "𝐺𝑜𝑜𝑑 𝑀𝑜𝑟𝑛𝑖𝑛𝑔 🌞"
         elif curr_time < 17:
-            gtxt = "ɢᴏᴏᴅ ᴀғᴛᴇʀɴᴏᴏɴ 🌓"
+            gtxt = "𝐺𝑜𝑜𝑑 𝐴𝑓𝑡𝑒𝑟𝑛𝑜𝑜𝑛 🌓"
         elif curr_time < 21:
-            gtxt = "ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ 🌘"
+            gtxt = "𝐺𝑜𝑜𝑑 𝐸𝑣𝑒𝑛𝑖𝑛𝑔 🌘"
         else:
-            gtxt = "ɢᴏᴏᴅ ɴɪɢʜᴛ 🌑"
+            gtxt = "𝐺𝑜𝑜𝑑 𝑁𝑖𝑔ℎ𝑡 🌑"
         try:
             await client.edit_message_media(
                 query.message.chat.id,
@@ -1517,10 +1519,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "about":
         buttons = [[
-            InlineKeyboardButton('‼️ ᴅɪꜱᴄʟᴀɪᴍᴇʀ ‼️', callback_data='disclaimer'),
-            InlineKeyboardButton ('🪔 sᴏᴜʀᴄᴇ', callback_data='source'),
-        ],[
-            InlineKeyboardButton('ᴅᴏɴᴀᴛɪᴏɴ 💰', callback_data='donation'),
+            InlineKeyboardButton('©️ Dɪꜱᴄʟᴀɪᴍᴇʀ', callback_data='disclaimer'),
+            InlineKeyboardButton ('𖦹 Sᴏᴜʀᴄᴇ', callback_data='source'),
         ],[
             InlineKeyboardButton('⇋ ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ ⇋', callback_data='start')
         ]]
@@ -1568,7 +1568,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "source":
         buttons = [[
-            InlineKeyboardButton('ᴅʀᴇᴀᴍxʙᴏᴛᴢ 📜', url='https://github.com/DreamXBotz/Auto_Filter_Bot.git'),
             InlineKeyboardButton('⇋ ʙᴀᴄᴋ ⇋', callback_data='about')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -1845,9 +1844,7 @@ async def auto_filter(client, msg, spoll=False):
             btn.insert(0,
                        [
                            InlineKeyboardButton(
-                               "ʀᴇᴍᴏᴠᴇ ᴀᴅs", url=f"https://t.me/{temp.U_NAME}?start=premium"),
-                           InlineKeyboardButton(
-                               "Sᴇɴᴅ Aʟʟ", callback_data=f"sendfiles#{key}")
+                               "⚡ Sᴇɴᴅ Aʟʟ ⚡", callback_data=f"sendfiles#{key}")
 
                        ])
         else:
@@ -1865,9 +1862,7 @@ async def auto_filter(client, msg, spoll=False):
             btn.insert(0,
                        [
                            InlineKeyboardButton(
-                               "ʀᴇᴍᴏᴠᴇ ᴀᴅs", url=f"https://t.me/{temp.U_NAME}?start=premium"),
-                           InlineKeyboardButton(
-                               "Sᴇɴᴅ Aʟʟ", callback_data=f"sendfiles#{key}")
+                               "⚡ Sᴇɴᴅ Aʟʟ ⚡", callback_data=f"sendfiles#{key}")
                        ])
 
         if offset != "":
@@ -1956,17 +1951,16 @@ async def auto_filter(client, msg, spoll=False):
             temp.IMDB_CAP[message.from_user.id] = None
             if ULTRA_FAST_MODE:
                 if settings.get('button'):
-                    cap = f"<b>🏷 ᴛɪᴛʟᴇ : <code>{search}</code>\n⏰ ʀᴇsᴜʟᴛ ɪɴ : <code>{remaining_seconds} Sᴇᴄᴏɴᴅs</code>\n\n📝 ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ : {message.from_user.mention}\n⚜️ ᴘᴏᴡᴇʀᴇᴅ ʙʏ : ⚡ {message.chat.title or temp.B_LINK or 'ᴅʀᴇᴀᴍxʙᴏᴛᴢ'} \n\n<u>Your Requested Files Are Here</u> \n\n</b>"
+                    cap = f"<b>Hᴇʏ 👋🏻{message.from_user.mention}💝/n/nPᴏᴡᴇʀᴇᴅ Bʏ ☞: {message.chat.title or temp.B_LINK}/n/n📫 Hᴇʀᴇ ɪs Wʜᴀᴛ I Fᴏᴜɴᴅ Fᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ<code>{search}</code> \n\n</b>"
                 else:
-                    cap = f"<b>🏷 ᴛɪᴛʟᴇ : <code>{search}</code>\n⏰ ʀᴇsᴜʟᴛ ɪɴ : <code>{remaining_seconds} Sᴇᴄᴏɴᴅs</code>\n\n📝 ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ : {message.from_user.mention}\n⚜️ ᴘᴏᴡᴇʀᴇᴅ ʙʏ : ⚡ {message.chat.title or temp.B_LINK or 'ᴅʀᴇᴀᴍxʙᴏᴛᴢ'} \n\n<u>Your Requested Files Are Here</u> \n\n</b>"
+                    cap = f"<b>Hᴇʏ 👋🏻{message.from_user.mention}💝/n/nPᴏᴡᴇʀᴇᴅ Bʏ ☞: {message.chat.title or temp.B_LINK}/n/n📫 Hᴇʀᴇ ɪs Wʜᴀᴛ I Fᴏᴜɴᴅ Fᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ<code>{search}</code> \n\n</b>"
                     for idx, file in enumerate(files, start=1):
                         cap += f"<b>\n{idx}. <a href='https://telegram.me/{temp.U_NAME}?start=file_{message.chat.id}_{file.file_id}'>[{get_size(file.file_size)}] {clean_filename(file.file_name)}\n</a></b>"
             else:
                 if settings.get('button'):
-                    cap = f"<b>🏷 ᴛɪᴛʟᴇ : <code>{search}</code>\n🧱 ᴛᴏᴛᴀʟ ꜰɪʟᴇꜱ : <code>{total_results}</code>\n⏰ ʀᴇsᴜʟᴛ ɪɴ : <code>{remaining_seconds} Sᴇᴄᴏɴᴅs</code>\n\n📝 ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ : {message.from_user.mention}\n⚜️ ᴘᴏᴡᴇʀᴇᴅ ʙʏ : ⚡ {message.chat.title or temp.B_LINK or 'ᴅʀᴇᴀᴍxʙᴏᴛᴢ'} \n\n<u>Your Requested Files Are Here</u> \n\n</b>"
+                    cap = f"<b>Hᴇʏ 👋🏻{message.from_user.mention}💝/n/nPᴏᴡᴇʀᴇᴅ Bʏ ☞: {message.chat.title or temp.B_LINK}/n/n📫 Hᴇʀᴇ ɪs Wʜᴀᴛ I Fᴏᴜɴᴅ Fᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ<code>{search}</code> \n\n</b>"
                 else:
-                    cap = f"<b>🏷 ᴛɪᴛʟᴇ : <code>{search}</code>\n🧱 ᴛᴏᴛᴀʟ ꜰɪʟᴇꜱ : <code>{total_results}</code>\n⏰ ʀᴇsᴜʟᴛ ɪɴ : <code>{remaining_seconds} Sᴇᴄᴏɴᴅs</code>\n\n📝 ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ : {message.from_user.mention}\n⚜️ ᴘᴏᴡᴇʀᴇᴅ ʙʏ : ⚡ {message.chat.title or temp.B_LINK or 'ᴅʀᴇᴀᴍxʙᴏᴛᴢ'} \n\n<u>Your Requested Files Are Here</u> \n\n</b>"
-
+                    cap = f"<b>Hᴇʏ 👋🏻{message.from_user.mention}💝/n/nPᴏᴡᴇʀᴇᴅ Bʏ ☞: {message.chat.title or temp.B_LINK}/n/n📫 Hᴇʀᴇ ɪs Wʜᴀᴛ I Fᴏᴜɴᴅ Fᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ<code>{search}</code> \n\n</b>"
                     for idx, file in enumerate(files, start=1):
                         cap += f"<b>\n{idx}. <a href='https://telegram.me/{temp.U_NAME}?start=file_{message.chat.id}_{file.file_id}'>[{get_size(file.file_size)}] {clean_filename(file.file_name)}\n</a></b>"
 
