@@ -1,8 +1,7 @@
 from pyrogram import Client
 from pyrogram.types import InlineQueryResultCachedDocument
 
-# Correct import
-from ia_filterdb import get_search_results
+from database.ia_filter import get_search_results   # ✅ Correct import!
 
 @Client.on_inline_query()
 async def inline_query_handler(client, query):
@@ -11,7 +10,6 @@ async def inline_query_handler(client, query):
     if not search:
         return
 
-    # Pass chat_id=None (required) + query
     files, _, _ = await get_search_results(
         chat_id=None,
         query=search
