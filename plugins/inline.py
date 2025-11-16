@@ -1,19 +1,21 @@
 from pyrogram import Client
 from pyrogram.types import InlineQueryResultCachedDocument
 
-# Correct import for YOUR repo
-from database.ia_filterdb import get_search_results
-
+# Correct import
+from ia_filterdb import get_search_results
 
 @Client.on_inline_query()
 async def inline_query_handler(client, query):
-    search = query.query.strip()
 
+    search = query.query.strip()
     if not search:
         return
 
-    # Fetch results from MongoDB
-    files = await get_search_results(search)
+    # Pass chat_id=None (required) + query
+    files, _, _ = await get_search_results(
+        chat_id=None,
+        query=search
+    )
 
     results = []
     for file in files:
