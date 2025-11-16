@@ -42,7 +42,7 @@ FSUB_PICS = (environ.get('FSUB_PICS', 'https://graph.org/file/7478ff3eac37f4329c
 # Admin, Channels & Users Configuration
 # ============================
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '8452579484').split()] # Replace with the actual admin ID(s) to add
-CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1002658908912 100316782058').split()]  # Channel id for auto indexing (make sure bot is admin)
+CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1002658908912 -100316782058').split()]  # Channel id for auto indexing (make sure bot is admin)
 
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1002839558490'))  # Log channel id (make sure bot is admin)
 BIN_CHANNEL = int(environ.get('BIN_CHANNEL', '-100'))  # Bin channel id (make sure bot is admin)
@@ -53,8 +53,9 @@ reqst_channel = environ.get('REQST_CHANNEL_ID', '-100')  # Request channel id (m
 SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'https://t.me/')  # Support group link (make sure bot is admin)
 
 # FORCE_SUB 
-auth_req_channels = environ.get("AUTH_REQ_CHANNELS", "-100")# requst to join Channel for force sub (make sure bot is admin) only for bot ADMINS  
-auth_channels     = environ.get("AUTH_CHANNELS", "-1001681286512")# Channels for force sub (make sure bot is admin)
+auth_req_channels = environ.get('AUTH_REQ_CHANNELS', '-100')# requst to join Channel for force sub (make sure bot is admin) only for bot ADMINS  
+auth_channels     = environ.get('AUTH_CHANNELS', '-1001681286512')# Channels for force sub (make sure bot is admin)
+AUTH_CHANNEL = int(auth_channels) if auth_channels and id_pattern.search(auth_channels) else None
 
 # ============================
 # Payment Configuration
