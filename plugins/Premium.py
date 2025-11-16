@@ -28,8 +28,16 @@ async def remove_premium(client, message):
         await message.reply_text("ᴜꜱᴀɢᴇ : /remove_premium user_id") 
 
 
-@Client.on_message(filters.command("myplan"))
+Client.on_message(filters.command("myplan"))
 async def myplan(client, message):
+
+    # ⛔ Temporarily disabled — remove this return later to activate
+    return
+
+    # ------------------------#
+    #   ORIGINAL CODE SAVED   #
+    # ------------------------#
+    
     try:
         user = message.from_user.mention
         user_id = message.from_user.id
@@ -164,8 +172,16 @@ async def premium_user(client, message):
         await message.reply_document('usersplan.txt', caption="Paid Users:")
 
 
-@Client.on_message(filters.command("plan"))
+Client.on_message(filters.command("plan"))
 async def plan(client, message):
+
+    # ⛔ Temporarily disabled — remove this return later to activate
+    return
+
+    # ------------------------#
+    #   ORIGINAL CODE SAVED   #
+    # ------------------------#
+    
     user_id = message.from_user.id
     users = message.from_user.mention
     log_message = (
