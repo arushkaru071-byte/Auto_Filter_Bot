@@ -1747,29 +1747,29 @@ async def auto_filter(client, msg, spoll=False):
             # ignore scheduling errors
             pass
 
-    # initialize to avoid NameError if reply_sticker fails
-    m = None
+# initialize to avoid NameError
+m = None
 
-    try:
-        if not spoll:
-            message = msg
-            if message.text.startswith("/"):
-                return
-            if re.findall(r"((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
-                return
-            if len(message.text) < 100:
-                message_text = message.text or ""
-                search = message_text.lower()
+try:
+    if not spoll:
+        message = msg
+        if message.text.startswith("/"):
+            return
+        if re.findall(r"((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
+            return
+        if len(message.text) < 100:
+            message_text = message.text or ""
+            search = message_text.lower()
 
-                stick_id = "CAACAgIAAxkBAAEPhm5o439f8A4sUGO2VcnBFZRRYxAxmQACtCMAAphLKUjeub7NKlvk2TYE"
-                keyboard = InlineKeyboardMarkup(
-                    [[InlineKeyboardButton(f'🔎 sᴇᴀʀᴄʜɪɴɢ {search}', callback_data="hiding")]]
+            # ✅ TEXT-ONLY searching message (NO sticker)
+            try:
+                m = await message.reply(
+                    f"🔎 **Searching:** `{search}` ...",
+                    quote=True
                 )
-                try:
-                    m = await message.reply_sticker(sticker=stick_id, reply_markup=keyboard)
-                except Exception as e:
-                    logger.exception("reply_sticker failed: %s", e)
-
+            except Exception as e:
+                logger.exception("search_message failed: %s", e)
+                
                 find = search.split(" ")
                 search = ""
                 removes = ["in", "upload", "series", "full",
