@@ -1962,7 +1962,7 @@ try:
                 else:
                     cap = f"<b>Hᴇʏ 👋🏻{message.from_user.mention}💝\n\nPᴏᴡᴇʀᴇᴅ Bʏ ☞: {message.chat.title or temp.B_LINK}\n\n📫 Hᴇʀᴇ ɪs Wʜᴀᴛ I Fᴏᴜɴᴅ Fᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ: <code>{search}</code> \n\n</b>"
                     for idx, file in enumerate(files, start=1):
-                        cap += f"<b>\n{idx}. <a href='https://telegram.me/{temp.U_NAME}?start=file_{message.chat.id}_{file.file_id}'>[{get_size(file.file_size)}] {clean_filename(file.file_name)}\n</a></b>    
+                        cap += f"<b>\n{idx}. <a href='https://telegram.me/{temp.U_NAME}?start=file_{message.chat.id}_{file.file_id}'>[{get_size(file.file_size)}] {clean_filename(file.file_name)}\n</a></b>"    
 
     sent = None
     try:
