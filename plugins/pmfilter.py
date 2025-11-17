@@ -2032,10 +2032,6 @@ try:
         asyncio.create_task(_schedule_delete(sent, message, DELETE_TIME))
 
     return
-    
-    except Exception as e:
-        logger.exception(e)
-        return
 
 async def ai_spell_check(chat_id, wrong_name):
     async def search_movie(wrong_name):
