@@ -1769,45 +1769,45 @@ try:
                 )
             except Exception as e:
                 logger.exception("search_message failed: %s", e)
-                
-                find = search.split(" ")
-                search = ""
-                removes = ["in", "upload", "series", "full",
-                           "horror", "thriller", "mystery", "print", "file"]
-                for x in find:
-                    if x in removes:
-                        continue
-                    else:
-                        search = search + x + " "
-                search = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)", "", search, flags=re.IGNORECASE)
-                search = re.sub(r"\s+", " ", search).strip()
-                search = search.replace("-", " ")
-                search = search.replace(":", "")
 
-                files, offset, total_results = await get_search_results(message.chat.id, search, offset=0, filter=True)
+            find = search.split(" ")
+            search = ""
+            removes = ["in", "upload", "series", "full",
+                       "horror", "thriller", "mystery", "print", "file"]
+            for x in find:
+                if x in removes:
+                    continue
+                else:
+                    search = search + x + " "
+            search = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)", "", search, flags=re.IGNORECASE)
+            search = re.sub(r"\s+", " ", search).strip()
+            search = search.replace("-", " ")
+            search = search.replace(":", "")
 
-                settings = await get_settings(message.chat.id)
-                if not files:
-                    if settings.get("spell_check"):
-                        ai_sts = await m.edit('🤖 ᴘʟᴇᴀꜱᴇ ᴡᴀɪᴛ, ᴀɪ ɪꜱ ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ ꜱᴘᴇʟʟɪɴɢ...')
-                        is_misspelled = await ai_spell_check(chat_id=message.chat.id, wrong_name=search)
+            files, offset, total_results = await get_search_results(message.chat.id, search, offset=0, filter=True)
 
-                        if is_misspelled:
-                            await ai_sts.edit(f'✅ Aɪ Sᴜɢɢᴇsᴛᴇᴅ: <code>{is_misspelled}</code>\n🔍 Searching for it...')
-                            message.text = is_misspelled
-                            await ai_sts.delete()
-                            return await auto_filter(client, message)
+            settings = await get_settings(message.chat.id)
+            if not files:
+                if settings.get("spell_check"):
+                    ai_sts = await m.edit('🤖 ᴘʟᴇᴀꜱᴇ ᴡᴀɪᴛ, ᴀɪ ɪꜱ ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ ꜱᴘᴇʟʟɪɴɢ...')
+                    is_misspelled = await ai_spell_check(chat_id=message.chat.id, wrong_name=search)
+
+                    if is_misspelled:
+                        await ai_sts.edit(f'✅ Aɪ Sᴜɢɢᴇsᴛᴇᴅ: <code>{is_misspelled}</code>\n🔍 Searching for it...')
+                        message.text = is_misspelled
                         await ai_sts.delete()
-                        result = await advantage_spell_chok(client, message)
-                        return result
-                    else:
-                        try:
-                            if m:
-                                await m.delete()
-                        except Exception:
-                            pass
-                        result = await advantage_spell_chok(client, message)
-                        return result
+                        return await auto_filter(client, message)
+                    await ai_sts.delete()
+                    result = await advantage_spell_chok(client, message)
+                    return result
+                else:
+                    try:
+                        if m:
+                            await m.delete()
+                    except Exception:
+                        pass
+                    result = await advantage_spell_chok(client, message)
+                    return result
             else:
                 return
         else:
