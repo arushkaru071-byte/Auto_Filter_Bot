@@ -1747,67 +1747,67 @@ async def auto_filter(client, msg, spoll=False):
             # ignore scheduling errors
             pass
 
-# initialize to avoid NameError
-m = None
+    # initialize to avoid NameError if reply_sticker fails
+    m = None
 
-try:
-    if not spoll:
-        message = msg
-        if message.text.startswith("/"):
-            return
-        if re.findall(r"((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
-            return
-        if len(message.text) < 100:
-            message_text = message.text or ""
-            search = message_text.lower()
+    try:
+        if not spoll:
+            message = msg
+            if message.text.startswith("/"):
+                return
+            if re.findall(r"((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
+                return
+            if len(message.text) < 100:
+                message_text = message.text or ""
+                search = message_text.lower()
 
-            # ✅ TEXT-ONLY searching message (NO sticker)
-            try:
-                m = await message.reply(
-                    f"🔎 **Searching:** `{search}` ...",
-                    quote=True
+                stick_id = "CAACAgIAAxkBAAEPhm5o439f8A4sUGO2VcnBFZRRYxAxmQACtCMAAphLKUjeub7NKlvk2TYE"
+                keyboard = InlineKeyboardMarkup(
+                    [[InlineKeyboardButton(f'🔎 sᴇᴀʀᴄʜɪɴɢ {search}', callback_data="hiding")]]
                 )
-            except Exception as e:
-                logger.exception("search_message failed: %s", e)
+                try:
+                    m = await message.reply_sticker(sticker=stick_id, reply_markup=keyboard)
+                except Exception as e:
+                    logger.exception("reply_sticker failed: %s", e)
 
-            find = search.split(" ")
-            search = ""
-            removes = ["in", "upload", "series", "full",
-                       "horror", "thriller", "mystery", "print", "file"]
-            for x in find:
-                if x in removes:
-                    continue
-                else:
-                    search = search + x + " "
-            search = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)", "", search, flags=re.IGNORECASE)
-            search = re.sub(r"\s+", " ", search).strip()
-            search = search.replace("-", " ")
-            search = search.replace(":", "")
+                find = search.split(" ")
+                search = ""
+                removes = ["in", "upload", "series", "full",
+                           "horror", "thriller", "mystery", "print", "file"]
+                for x in find:
+                    if x in removes:
+                        continue
+                    else:
+                        search = search + x + " "
+                search = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)", "", search, flags=re.IGNORECASE)
+                search = re.sub(r"\s+", " ", search).strip()
+                search = search.replace("-", " ")
+                search = search.replace(":", "")
 
-            files, offset, total_results = await get_search_results(message.chat.id, search, offset=0, filter=True)
+                files, offset, total_results = await get_search_results(message.chat.id, search, offset=0, filter=True)
 
-            settings = await get_settings(message.chat.id)
-            if not files:
-                if settings.get("spell_check"):
-                    ai_sts = await m.edit('🤖 ᴘʟᴇᴀꜱᴇ ᴡᴀɪᴛ, ᴀɪ ɪꜱ ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ ꜱᴘᴇʟʟɪɴɢ...')
-                    is_misspelled = await ai_spell_check(chat_id=message.chat.id, wrong_name=search)
+                settings = await get_settings(message.chat.id)
+                if not files:
+                    if settings.get("spell_check"):
+                        ai_sts = await m.edit('🤖 ᴘʟᴇᴀꜱᴇ ᴡᴀɪᴛ, ᴀɪ ɪꜱ ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ ꜱᴘᴇʟʟɪɴɢ...')
+                        is_misspelled = await ai_spell_check(chat_id=message.chat.id, wrong_name=search)
 
-                    if is_misspelled:
-                        await ai_sts.edit(f'✅ Aɪ Sᴜɢɢᴇsᴛᴇᴅ: <code>{is_misspelled}</code>\n🔍 Searching for it...')
-                        message.text = is_misspelled
+                        if is_misspelled:
+                            await ai_sts.edit(f'✅ Aɪ Sᴜɢɢᴇsᴛᴇᴅ: <code>{is_misspelled}</code>\n🔍 Searching for it...')
+                            message.text = is_misspelled
+                            await ai_sts.delete()
+                            return await auto_filter(client, message)
                         await ai_sts.delete()
-                        return await auto_filter(client, message)
-                    await ai_sts.delete()
-                    result = await advantage_spell_chok(client, message)
-                    return result
-                else:
-                    try:
-                        if m:
-                            await m.delete()
-                    except Exception:
-                        pass
-                    result = await advantage_spell_chok(client, message)
-                    return result
+                        result = await advantage_spell_chok(client, message)
+                        return result
+                    else:
+                        try:
+                            if m:
+                                await m.delete()
+                        except Exception:
+                            pass
+                        result = await advantage_spell_chok(client, message)
+                        return result
             else:
                 return
         else:
@@ -1844,7 +1844,9 @@ try:
             btn.insert(0,
                        [
                            InlineKeyboardButton(
-                               "⚡ Sᴇɴᴅ Aʟʟ ⚡", callback_data=f"sendfiles#{key}")
+                               "ʀᴇᴍᴏᴠᴇ ᴀᴅs", url=f"https://t.me/{temp.U_NAME}?start=premium"),
+                           InlineKeyboardButton(
+                               "Sᴇɴᴅ Aʟʟ", callback_data=f"sendfiles#{key}")
 
                        ])
         else:
@@ -1862,7 +1864,9 @@ try:
             btn.insert(0,
                        [
                            InlineKeyboardButton(
-                               "⚡ Sᴇɴᴅ Aʟʟ ⚡", callback_data=f"sendfiles#{key}")
+                               "ʀᴇᴍᴏᴠᴇ ᴀᴅs", url=f"https://t.me/{temp.U_NAME}?start=premium"),
+                           InlineKeyboardButton(
+                               "Sᴇɴᴅ Aʟʟ", callback_data=f"sendfiles#{key}")
                        ])
 
         if offset != "":
@@ -1963,75 +1967,48 @@ try:
                     cap = f"<b>Hᴇʏ 👋🏻{message.from_user.mention}💝\n\nPᴏᴡᴇʀᴇᴅ Bʏ ☞: {message.chat.title or temp.B_LINK}\n\n📫 Hᴇʀᴇ ɪs Wʜᴀᴛ I Fᴏᴜɴᴅ Fᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ: <code>{search}</code> \n\n</b>"
                     for idx, file in enumerate(files, start=1):
                         cap += f"<b>\n{idx}. <a href='https://telegram.me/{temp.U_NAME}?start=file_{message.chat.id}_{file.file_id}'>[{get_size(file.file_size)}] {clean_filename(file.file_name)}\n</a></b>"    
+        sent = None
+        try:
+            if imdb and imdb.get('poster'):
+                try:
+                    if TMDB_POSTER:
+                        photo = imdb.get('backdrop') if imdb.get('backdrop') and LANDSCAPE_POSTER else imdb.get('poster')
+                    else:
+                        photo = imdb.get('poster')
+                    sent = await message.reply_photo(photo=photo, caption=cap, reply_markup=InlineKeyboardMarkup(btn), parse_mode=enums.ParseMode.HTML)
+                    if m:
+                        await m.delete()
+                except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+                    pic = imdb.get('poster')
+                    poster = pic.replace('.jpg', "._V1_UX360.jpg")
+                    sent = await message.reply_photo(photo=poster, caption=cap, reply_markup=InlineKeyboardMarkup(btn), parse_mode=enums.ParseMode.HTML)
+                    if m:
+                        await m.delete()
+                except Exception as e:
+                    logger.exception(e)
+                    sent = await message.reply_text(text=cap, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True, parse_mode=enums.ParseMode.HTML)
+            else:
+                sent = await message.reply_text(text=cap, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True, parse_mode=enums.ParseMode.HTML)
+                if m:
+                    await m.delete()
+        except Exception as e:
+            logger.exception("Failed to send result: %s", e)
+            return
 
-    sent = None
-    try:
-        if imdb and imdb.get('poster'):
+        try:
+            if settings.get('auto_delete'):
+                asyncio.create_task(_schedule_delete(sent, message, DELETE_TIME))
+        except KeyError:
             try:
-                if TMDB_POSTER:
-                    photo = imdb.get('backdrop') if imdb.get('backdrop') and LANDSCAPE_POSTER else imdb.get('poster')
-                else:
-                    photo = imdb.get('poster')
-
-                sent = await message.reply_photo(
-                    photo=photo,
-                    caption=cap,
-                    reply_markup=InlineKeyboardMarkup(btn),
-                    parse_mode=enums.ParseMode.HTML
-                )
-
-                if m:
-                    await m.delete()
-
-            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-                pic = imdb.get('poster')
-                poster = pic.replace('.jpg', "._V1_UX360.jpg")
-
-                sent = await message.reply_photo(
-                    photo=poster,
-                    caption=cap,
-                    reply_markup=InlineKeyboardMarkup(btn),
-                    parse_mode=enums.ParseMode.HTML
-                )
-
-                if m:
-                    await m.delete()
-
-            except Exception as e:
-                logger.exception(e)
-                sent = await message.reply_text(
-                    text=cap,
-                    reply_markup=InlineKeyboardMarkup(btn),
-                    disable_web_page_preview=True,
-                    parse_mode=enums.ParseMode.HTML
-                )
-
-        else:
-            sent = await message.reply_text(
-                text=cap,
-                reply_markup=InlineKeyboardMarkup(btn),
-                disable_web_page_preview=True,
-                parse_mode=enums.ParseMode.HTML
-            )
-
-            if m:
-                await m.delete()
-
-    except Exception as e:
-        logger.exception("Failed to send result: %s", e)
+                await save_group_settings(message.chat.id, 'auto_delete', True)
+            except Exception:
+                pass
+            asyncio.create_task(_schedule_delete(sent, message, DELETE_TIME))
         return
 
-    try:
-        if settings.get('auto_delete'):
-            asyncio.create_task(_schedule_delete(sent, message, DELETE_TIME))
-    except KeyError:
-        try:
-            await save_group_settings(message.chat.id, 'auto_delete', True)
-        except Exception:
-            pass
-        asyncio.create_task(_schedule_delete(sent, message, DELETE_TIME))
-
-    return
+    except Exception as e:
+        logger.exception(e)
+        return
 
 async def ai_spell_check(chat_id, wrong_name):
     async def search_movie(wrong_name):
