@@ -1747,7 +1747,6 @@ async def _schedule_delete(sent_obj, orig_msg, delay):
     except Exception:
         # ignore scheduling errors
         pass
-
 # initialize to avoid NameError if reply_sticker fails
 m = None
 
@@ -1778,28 +1777,34 @@ except Exception:
 # Continue normal code flow
 find = search.split(" ")
 search = ""
-removes = ["in", "upload", "series", "full",
-           "horror", "thriller", "mystery", "print", "file"]
+
+removes = [
+    "in", "upload", "series", "full",
+    "horror", "thriller", "mystery", "print", "file"
+]
+
 for x in find:
-    if x in removes
-                        continue
-                    else:
-                        search = search + x + " "
-                search = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)", "", search, flags=re.IGNORECASE)
-                search = re.sub(r"\s+", " ", search).strip()
-                search = search.replace("-", " ")
-                search = search.replace(":", "")
+    if x in removes:
+        continue
+    else:
+        search += x + " "
 
-                files, offset, total_results = await get_search_results(message.chat.id, search, offset=0, filter=True)
+# cleanup search
+search = re.sub(
+    r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)",
+    "",
+    search,
+    flags=re.IGNORECASE
+)
 
-                settings = await get_settings(message.chat.id)
-                if not files:
-                    if settings.get("spell_check"):
-                        ai_sts = await m.edit('🤖 ᴘʟᴇᴀꜱᴇ ᴡᴀɪᴛ, ᴀɪ ɪꜱ ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ ꜱᴘᴇʟʟɪɴɢ...')
-                        is_misspelled = await ai_spell_check(chat_id=message.chat.id, wrong_name=search)
+search = re.sub(r"\s+", " ", search).strip()
+search = search.replace("-", " ")
+search = search.replace(":", "")
 
-                        if is_misspelled:
-                            await ai_sts.edit(f'✅ Aɪ Sᴜɢɢᴇsᴛᴇᴅ: <code>{is_misspelled}</code>\n🔍 Searching for it...')
+# finally fetch results
+files, offset, total_results = await get_search_results(
+    message.chat.id, search, offset=0, filter=True)
+
                             message.text = is_misspelled
                             await ai_sts.delete()
                             return await auto_filter(client, message)
