@@ -188,10 +188,9 @@ async def next_page(bot, query):
                    )
         btn.insert(0,
                    [
+                       
                        InlineKeyboardButton(
-                           "ʀᴇᴍᴏᴠᴇ ᴀᴅs", url=f"https://t.me/{temp.U_NAME}?start=premium"),
-                       InlineKeyboardButton(
-                           "Sᴇɴᴅ Aʟʟ", callback_data=f"sendfiles#{key}")
+                           "⚡ Sᴇɴᴅ Aʟʟ ⚡", callback_data=f"sendfiles#{key}")
 
                    ]
                    )
@@ -209,9 +208,7 @@ async def next_page(bot, query):
                    ]
                    )
         btn.insert(0, [
-            InlineKeyboardButton(
-                "ʀᴇᴍᴏᴠᴇ ᴀᴅs", url=f"https://t.me/{temp.U_NAME}?start=premium"),
-            InlineKeyboardButton("Sᴇɴᴅ Aʟʟ", callback_data=f"sendfiles#{key}")
+            InlineKeyboardButton("⚡ Sᴇɴᴅ Aʟʟ ⚡", callback_data=f"sendfiles#{key}")
         ])
     if ULTRA_FAST_MODE:
         if 0 < offset <= 10:
@@ -230,7 +227,7 @@ async def next_page(bot, query):
             btn.append(
                 [
                     InlineKeyboardButton("⋞ ʙᴀᴄᴋ", callback_data=f"next_{req}_{key}_{off_set}"),
-                    InlineKeyboardButton(f"{math.ceil(int(offset)/10)+1}", callback_data="pages"),
+                    InlineKeyboardButton(f"{math.ceil(int(offset)/10)+1} / {math.ceil(total/10)}", callback_data="pages"),
                     InlineKeyboardButton("ɴᴇxᴛ ⋟", callback_data=f"next_{req}_{key}_{n_offset}")
                 ],
             )
