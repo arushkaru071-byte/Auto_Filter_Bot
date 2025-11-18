@@ -10,6 +10,7 @@ from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerId
 from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto, WebAppInfo
 from info import *
+from info import SHOW_LOADING_STICKER
 from Script import script
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from database.refer import referdb
@@ -1761,21 +1762,25 @@ async def auto_filter(client, msg, spoll=False):
                 message_text = message.text or ""
                 search = message_text.lower()
 
-                stick_id = "CAACAgIAAxkBAAEPhm5o439f8A4sUGO2VcnBFZRRYxAxmQACtCMAAphLKUjeub7NKlvk2TYE"
-                keyboard = InlineKeyboardMarkup(
-                    [[InlineKeyboardButton(f'🔎 sᴇᴀʀᴄʜɪɴɢ {search}', callback_data="hiding")]]
-                )
-                try:
-                    m = await message.reply_sticker(sticker=stick_id, reply_markup=keyboard)
-                except Exception as e:
-                    logger.exception("reply_sticker failed: %s", e)
+                if SHOW_LOADING_STICKER:
+    stick_id = "CAACAgIAAxkBAAEPhm5o439f8A4sUGO2VcnBFZRRYxAxmQACtCMAAphLKUjeub7NKlvk2TYE"
+    keyboard = InlineKeyboardMarkup(
+        [[InlineKeyboardButton(f'🔎 sᴇᴀʀᴄʜɪɴɢ {search}', callback_data="hiding")]]
+    )
+    try:
+        m = await message.reply_sticker(sticker=stick_id, reply_markup=keyboard)
+    except:
+        m = None
+else:
+    # ⚠️ No sticker, but message will still show later
+    m = None
 
-                find = search.split(" ")
-                search = ""
-                removes = ["in", "upload", "series", "full",
-                           "horror", "thriller", "mystery", "print", "file"]
-                for x in find:
-                    if x in removes:
+find = search.split(" ")
+search = ""
+removes = ["in", "upload", "series", "full",
+           "horror", "thriller", "mystery", "print", "file"]
+for x in find:
+    if x in removes
                         continue
                     else:
                         search = search + x + " "
@@ -1844,9 +1849,7 @@ async def auto_filter(client, msg, spoll=False):
             btn.insert(0,
                        [
                            InlineKeyboardButton(
-                               "ʀᴇᴍᴏᴠᴇ ᴀᴅs", url=f"https://t.me/{temp.U_NAME}?start=premium"),
-                           InlineKeyboardButton(
-                               "Sᴇɴᴅ Aʟʟ", callback_data=f"sendfiles#{key}")
+                               "⚡ Sᴇɴᴅ Aʟʟ ⚡", callback_data=f"sendfiles#{key}")
 
                        ])
         else:
@@ -1864,9 +1867,7 @@ async def auto_filter(client, msg, spoll=False):
             btn.insert(0,
                        [
                            InlineKeyboardButton(
-                               "ʀᴇᴍᴏᴠᴇ ᴀᴅs", url=f"https://t.me/{temp.U_NAME}?start=premium"),
-                           InlineKeyboardButton(
-                               "Sᴇɴᴅ Aʟʟ", callback_data=f"sendfiles#{key}")
+                               "⚡ Sᴇɴᴅ Aʟʟ ⚡", callback_data=f"sendfiles#{key}")
                        ])
 
         if offset != "":
