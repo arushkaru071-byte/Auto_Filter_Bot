@@ -1762,12 +1762,8 @@ async def auto_filter(client, msg, spoll=False):
                 message_text = message.text or ""
                 search = message_text.lower()
 
-                if SHOW_LOADING_STICKER:
+            if SHOW_LOADING_STICKER:
     stick_id = "CAACAgIAAxkBAAEPhm5o439f8A4sUGO2VcnBFZRRYxAxmQACtCMAAphLKUjeub7NKlvk2TYE"
-    keyboard = InlineKeyboardMarkup(
-        [[InlineKeyboardButton(f'🔎 sᴇᴀʀᴄʜɪɴɢ {search}', callback_data="hiding")]]
-    )
-    try:
         m = await message.reply_sticker(sticker=stick_id, reply_markup=keyboard)
     except:
         m = None
