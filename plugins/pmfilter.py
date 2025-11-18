@@ -1733,78 +1733,68 @@ async def auto_filter(client, msg, spoll=False):
     """
     curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
 
-async def _schedule_delete(sent_obj, orig_msg, delay):
-    try:
-        await asyncio.sleep(delay)
+    async def _schedule_delete(sent_obj, orig_msg, delay):
         try:
-            await sent_obj.delete()
+            await asyncio.sleep(delay)
+            try:
+                await sent_obj.delete()
+            except Exception:
+                pass
+            try:
+                await orig_msg.delete()
+            except Exception:
+                pass
         except Exception:
+            # ignore scheduling errors
             pass
-        try:
-            await orig_msg.delete()
-        except Exception:
-            pass
-    except Exception:
-        # ignore scheduling errors
-        pass
-# initialize to avoid NameError if reply_sticker fails
-m = None
 
-try:
-    if not spoll:
-        message = msg
-
-        if message.text.startswith("/"):
-            return
-
-        if re.findall(r"((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
-            return
-
-        if len(message.text) < 100:
-            message_text = message.text or ""
-            search = message_text.lower()
-
-        # send sticker only if enabled
-        if SHOW_LOADING_STICKER:
-            stick_id = "CAACAgIAAxkBAAEPhm5o439f8A4sUGO2VcnBFZRRYxAxmQACtCMAAphLKUjeub7NKlvk2TYE"
-            m = await message.reply_sticker(sticker=stick_id, reply_markup=keyboard)
-        else:
-            m = None
-
-except Exception:
+    # initialize to avoid NameError if reply_sticker fails
     m = None
 
-# Continue normal code flow
-find = search.split(" ")
-search = ""
+    try:
+        if not spoll:
+            message = msg
+            if message.text.startswith("/"):
+                return
+            if re.findall(r"((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
+                return
+            if len(message.text) < 100:
+                message_text = message.text or ""
+                search = message_text.lower()
 
-removes = [
-    "in", "upload", "series", "full",
-    "horror", "thriller", "mystery", "print", "file"
-]
+                stick_id = "CAACAgIAAxkBAAEPhm5o439f8A4sUGO2VcnBFZRRYxAxmQACtCMAAphLKUjeub7NKlvk2TYE"
+                keyboard = InlineKeyboardMarkup(
+                    [[InlineKeyboardButton(f'🔎 sᴇᴀʀᴄʜɪɴɢ {search}', callback_data="hiding")]]
+                )
+                try:
+                    m = await message.reply_sticker(sticker=stick_id, reply_markup=keyboard)
+                except Exception as e:
+                    logger.exception("reply_sticker failed: %s", e)
 
-for x in find:
-    if x in removes:
-        continue
-    else:
-        search += x + " "
+                find = search.split(" ")
+                search = ""
+                removes = ["in", "upload", "series", "full",
+                           "horror", "thriller", "mystery", "print", "file"]
+                for x in find:
+                    if x in removes:
+                        continue
+                    else:
+                        search = search + x + " "
+                search = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)", "", search, flags=re.IGNORECASE)
+                search = re.sub(r"\s+", " ", search).strip()
+                search = search.replace("-", " ")
+                search = search.replace(":", "")
 
-# cleanup search
-search = re.sub(
-    r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)",
-    "",
-    search,
-    flags=re.IGNORECASE
-)
+                files, offset, total_results = await get_search_results(message.chat.id, search, offset=0, filter=True)
 
-search = re.sub(r"\s+", " ", search).strip()
-search = search.replace("-", " ")
-search = search.replace(":", "")
+                settings = await get_settings(message.chat.id)
+                if not files:
+                    if settings.get("spell_check"):
+                        ai_sts = await m.edit('🤖 ᴘʟᴇᴀꜱᴇ ᴡᴀɪᴛ, ᴀɪ ɪꜱ ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ ꜱᴘᴇʟʟɪɴɢ...')
+                        is_misspelled = await ai_spell_check(chat_id=message.chat.id, wrong_name=search)
 
-# finally fetch results
-files, offset, total_results = await get_search_results(
-    message.chat.id, search, offset=0, filter=True)
-
+                        if is_misspelled:
+                            await ai_sts.edit(f'✅ Aɪ Sᴜɢɢᴇsᴛᴇᴅ: <code>{is_misspelled}</code>\n🔍 Searching for it...')
                             message.text = is_misspelled
                             await ai_sts.delete()
                             return await auto_filter(client, message)
@@ -1873,7 +1863,7 @@ files, offset, total_results = await get_search_results(
             btn.insert(0,
                        [
                            InlineKeyboardButton(
-                               "⚡ Sᴇɴᴅ Aʟʟ ⚡", callback_data=f"sendfiles#{key}")
+                               " ⚡ Sᴇɴᴅ Aʟʟ ⚡", callback_data=f"sendfiles#{key}")
                        ])
 
         if offset != "":
@@ -1973,7 +1963,8 @@ files, offset, total_results = await get_search_results(
                 else:
                     cap = f"<b>Hᴇʏ 👋🏻{message.from_user.mention}💝\n\nPᴏᴡᴇʀᴇᴅ Bʏ ☞: {message.chat.title or temp.B_LINK}\n\n📫 Hᴇʀᴇ ɪs Wʜᴀᴛ I Fᴏᴜɴᴅ Fᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ: <code>{search}</code> \n\n</b>"
                     for idx, file in enumerate(files, start=1):
-                        cap += f"<b>\n{idx}. <a href='https://telegram.me/{temp.U_NAME}?start=file_{message.chat.id}_{file.file_id}'>[{get_size(file.file_size)}] {clean_filename(file.file_name)}\n</a></b>"    
+                        cap += f"<b>\n{idx}. <a href='https://telegram.me/{temp.U_NAME}?start=file_{message.chat.id}_{file.file_id}'>[{get_size(file.file_size)}] {clean_filename(file.file_name)}\n</a></b>"
+
         sent = None
         try:
             if imdb and imdb.get('poster'):
