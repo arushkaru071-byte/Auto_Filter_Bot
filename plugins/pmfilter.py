@@ -1733,44 +1733,49 @@ async def auto_filter(client, msg, spoll=False):
     """
     curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
 
-    async def _schedule_delete(sent_obj, orig_msg, delay):
-        try:
-            await asyncio.sleep(delay)
-            try:
-                await sent_obj.delete()
-            except Exception:
-                pass
-            try:
-                await orig_msg.delete()
-            except Exception:
-                pass
-        except Exception:
-            # ignore scheduling errors
-            pass
-
-    # initialize to avoid NameError if reply_sticker fails
-    m = None
-
+async def _schedule_delete(sent_obj, orig_msg, delay):
     try:
-        if not spoll:
-            message = msg
-            if message.text.startswith("/"):
-                return
-            if re.findall(r"((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
-                return
-            if len(message.text) < 100:
-                message_text = message.text or ""
-                search = message_text.lower()
+        await asyncio.sleep(delay)
+        try:
+            await sent_obj.delete()
+        except Exception:
+            pass
+        try:
+            await orig_msg.delete()
+        except Exception:
+            pass
+    except Exception:
+        # ignore scheduling errors
+        pass
 
-            if SHOW_LOADING_STICKER:
-    stick_id = "CAACAgIAAxkBAAEPhm5o439f8A4sUGO2VcnBFZRRYxAxmQACtCMAAphLKUjeub7NKlvk2TYE"
-        m = await message.reply_sticker(sticker=stick_id, reply_markup=keyboard)
-    except:
-        m = None
-else:
-    # ⚠️ No sticker, but message will still show later
+# initialize to avoid NameError if reply_sticker fails
+m = None
+
+try:
+    if not spoll:
+        message = msg
+
+        if message.text.startswith("/"):
+            return
+
+        if re.findall(r"((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
+            return
+
+        if len(message.text) < 100:
+            message_text = message.text or ""
+            search = message_text.lower()
+
+        # send sticker only if enabled
+        if SHOW_LOADING_STICKER:
+            stick_id = "CAACAgIAAxkBAAEPhm5o439f8A4sUGO2VcnBFZRRYxAxmQACtCMAAphLKUjeub7NKlvk2TYE"
+            m = await message.reply_sticker(sticker=stick_id, reply_markup=keyboard)
+        else:
+            m = None
+
+except Exception:
     m = None
 
+# Continue normal code flow
 find = search.split(" ")
 search = ""
 removes = ["in", "upload", "series", "full",
