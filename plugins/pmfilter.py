@@ -222,7 +222,7 @@ async def next_page(bot, query):
                 [InlineKeyboardButton("⋞ ʙᴀᴄᴋ", callback_data=f"next_{req}_{key}_{off_set}"), InlineKeyboardButton(f"{math.ceil(int(offset)/10)+1}", callback_data="pages")]
             )
         elif off_set is None:
-            btn.append([InlineKeyboardButton("ᴘᴀɢᴇ", callback_data="pages"), InlineKeyboardButton(f"{math.ceil(int(offset)/10)+1}", callback_data="pages"), InlineKeyboardButton("ɴᴇxᴛ ⋟", callback_data=f"next_{req}_{key}_{n_offset}")])
+            btn.append([InlineKeyboardButton("ᴘᴀɢᴇ", callback_data="pages"), InlineKeyboardButton(f"{math.ceil(int(offset)/10)+1} / {math.ceil(total/10)}", callback_data="pages"), InlineKeyboardButton("ɴᴇxᴛ ⋟", callback_data=f"next_{req}_{key}_{n_offset}")])
         else:
             btn.append(
                 [
@@ -463,9 +463,7 @@ async def filter_qualities_cb_handler(client: Client, query: CallbackQuery):
         btn.insert(0,
                    [
                        InlineKeyboardButton(
-                           "ʀᴇᴍᴏᴠᴇ ᴀᴅs", url=f"https://t.me/{temp.U_NAME}?start=premium"),
-                       InlineKeyboardButton(
-                           "Sᴇɴᴅ Aʟʟ", callback_data=f"sendfiles#{key}")
+                           "⚡ Sᴇɴᴅ Aʟʟ ⚡", callback_data=f"sendfiles#{key}")
                    ])
     else:
         btn = []
@@ -482,9 +480,7 @@ async def filter_qualities_cb_handler(client: Client, query: CallbackQuery):
         btn.insert(0,
                    [
                        InlineKeyboardButton(
-                           "ʀᴇᴍᴏᴠᴇ ᴀᴅs", url=f"https://t.me/{temp.U_NAME}?start=premium"),
-                       InlineKeyboardButton(
-                           "Sᴇɴᴅ Aʟʟ", callback_data=f"sendfiles#{key}")
+                           "⚡ Sᴇɴᴅ Aʟʟ ⚡", callback_data=f"sendfiles#{key}")
 
                    ])
     if offset != "":
@@ -620,11 +616,9 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
                    ]
                    )
         btn.insert(0,
-                   [
+                   [       
                        InlineKeyboardButton(
-                           "ʀᴇᴍᴏᴠᴇ ᴀᴅs", url=f"https://t.me/{temp.U_NAME}?start=premium"),
-                       InlineKeyboardButton(
-                           "Sᴇɴᴅ Aʟʟ", callback_data=f"sendfiles#{key}")
+                           "⚡ Sᴇɴᴅ Aʟʟ ⚡", callback_data=f"sendfiles#{key}")
                    ]
                    )
     else:
@@ -641,9 +635,7 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
         btn.insert(0,
                    [
                        InlineKeyboardButton(
-                           "ʀᴇᴍᴏᴠᴇ ᴀᴅs", url=f"https://t.me/{temp.U_NAME}?start=premium"),
-                       InlineKeyboardButton(
-                           "Sᴇɴᴅ Aʟʟ", callback_data=f"sendfiles#{key}")
+                           "⚡ Sᴇɴᴅ Aʟʟ ⚡", callback_data=f"sendfiles#{key}")
                    ])
     if offset != "":
         try:
@@ -776,9 +768,7 @@ async def filter_seasons_cb_handler(client: Client, query: CallbackQuery):
     btn.insert(
         0,
         [
-            InlineKeyboardButton(
-                "ʀᴇᴍᴏᴠᴇ ᴀᴅs", url=f"https://t.me/{temp.U_NAME}?start=premium"),
-            InlineKeyboardButton("Sᴇɴᴅ Aʟʟ", callback_data=f"sendfiles#{key}"),
+            InlineKeyboardButton("⚡ Sᴇɴᴅ Aʟʟ ⚡", callback_data=f"sendfiles#{key}"),
         ],
     )
     if n_offset != "":
