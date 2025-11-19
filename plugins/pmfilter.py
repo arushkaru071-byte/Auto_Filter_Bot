@@ -211,34 +211,50 @@ async def next_page(bot, query):
             InlineKeyboardButton("⚡ Sᴇɴᴅ Aʟʟ ⚡", callback_data=f"sendfiles#{key}")
         ])
     if ULTRA_FAST_MODE:
-        if 0 < offset <= 10:
-            off_set = 0
-        elif offset == 0:
-            off_set = None
+        per_page = 10
+
+        # Calculate current page
+        current_page = (offset // per_page) + 1
+        total_pages = max(1, math.ceil(total / per_page))
+
+        # Previous offset
+        if offset == 0:
+            prev_offset = None
+        elif offset <= per_page:
+            prev_offset = 0
         else:
-            off_set = offset - 10
-        if n_offset == 0:
-            btn.append(
-                [InlineKeyboardButton("⋞ ʙᴀᴄᴋ", callback_data=f"next_{req}_{key}_{off_set}"), InlineKeyboardButton(f"{math.ceil(int(offset)/10)+1} / {math.ceil(total/10)}", callback_data="pages")]
+            prev_offset = offset - per_page
+
+        # Next offset
+        next_offset = offset + per_page
+        if next_offset >= total:
+            next_offset = None
+
+        nav_row = []
+
+        # Back button (only if previous page exists)
+        if prev_offset is not None:
+            nav_row.append(
+                InlineKeyboardButton("⋞ ʙᴀᴄᴋ", callback_data=f"next_{req}_{key}_{prev_offset}")
             )
-        elif off_set is None:
-            btn.append([InlineKeyboardButton("ᴘᴀɢᴇ", callback_data="pages"), InlineKeyboardButton(f"{math.ceil(int(offset)/10)+1} / {math.ceil(total/10)}", callback_data="pages"), InlineKeyboardButton("ɴᴇxᴛ ⋟", callback_data=f"next_{req}_{key}_{n_offset}")])
-        else:
-            btn.append(
-                [
-                    InlineKeyboardButton("⋞ ʙᴀᴄᴋ", callback_data=f"next_{req}_{key}_{off_set}"),
-                    InlineKeyboardButton(f"{math.ceil(int(offset)/10)+1} / {math.ceil(total/10)}", callback_data="pages"),
-                    InlineKeyboardButton("ɴᴇxᴛ ⋟", callback_data=f"next_{req}_{key}_{n_offset}")
-                ],
+
+        # Page display (example: 1/10)
+        nav_row.append(
+            InlineKeyboardButton(f"{current_page}/{total_pages}", callback_data="pages")
+        )
+
+        # Next button (only if more pages exist)
+        if next_offset is not None:
+            nav_row.append(
+                InlineKeyboardButton("ɴᴇxᴛ ⋟", callback_data=f"next_{req}_{key}_{next_offset}")
             )
+
+        btn.append(nav_row)
+        
     else:
         try:
-            if settings['max_btn']:
-                if 0 < offset <= 10:
-                    off_set = 0
-                elif offset == 0:
-                    off_set = None
-                else:
+        
+            
                     off_set = offset - 10
                 if n_offset == 0:
                     btn.append([InlineKeyboardButton("⋞ ʙᴀᴄᴋ", callback_data=f"next_{req}_{key}_{off_set}"), InlineKeyboardButton(
