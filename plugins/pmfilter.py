@@ -1725,6 +1725,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_reply_markup(reply_markup)
     await query.answer(MSG_ALRT)
 
+
 async def auto_filter(client, msg, spoll=False):
     """
     Core auto_filter logic with timing/debug logging removed.
@@ -1746,56 +1747,42 @@ async def auto_filter(client, msg, spoll=False):
             # ignore scheduling errors
             pass
 
-    # initialize to avoid NameError
+    # initialize to avoid NameError if reply_sticker fails
     m = None
 
     try:
         if not spoll:
             message = msg
-
             if message.text.startswith("/"):
                 return
-
             if re.findall(r"((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
                 return
-
             if len(message.text) < 100:
                 message_text = message.text or ""
                 search = message_text.lower()
 
-                # searching UI removed
-                pass
+                stick_id = "CAACAgIAAxkBAAEPhm5o439f8A4sUGO2VcnBFZRRYxAxmQACtCMAAphLKUjeub7NKlvk2TYE"
+                keyboard = InlineKeyboardMarkup(
+                    [[InlineKeyboardButton(f'🔎 sᴇᴀʀᴄʜɪɴɢ {search}', callback_data="hiding")]]
+                )
+                try:
+                    m = await message.reply_sticker(sticker=stick_id, reply_markup=keyboard)
+                except Exception as e:
+                    logger.exception("reply_sticker failed: %s", e)
 
-    except Exception as e:
-        logger.exception("search block failed: %s", e)
-
-    # -------------------------
-    # ✅ This block MUST be OUTSIDE the try/except
-    # -------------------------
-    find = search.split(" ")
-    search = ""
-    removes = [
-        "in", "upload", "series", "full", "horror", "thriller", "mystery",
-        "print", "file"
-    ]
-
-    for x in find:
-        if x in removes:
-            continue
-        else:
-            search = search + x + " "
-
-    search = re.sub(
-        r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)",
-        "",
-        search,
-        flags=re.IGNORECASE
-    )
-
-    search = re.sub(r"\s+", " ", search).strip()
-    search = search.replace("-", " ")
-    search = search.replace(":", "")
-
+                find = search.split(" ")
+                search = ""
+                removes = ["in", "upload", "series", "full",
+                           "horror", "thriller", "mystery", "print", "file"]
+                for x in find:
+                    if x in removes:
+                        continue
+                    else:
+                        search = search + x + " "
+                search = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)", "", search, flags=re.IGNORECASE)
+                search = re.sub(r"\s+", " ", search).strip()
+                search = search.replace("-", " ")
+                search = search.replace(":", "")
 
                 files, offset, total_results = await get_search_results(message.chat.id, search, offset=0, filter=True)
 
