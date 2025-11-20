@@ -1747,11 +1747,12 @@ async def auto_filter(client, msg, spoll=False):
             # ignore scheduling errors
             pass
       
-    # initialize to avoid NameError if reply_sticker fails
-    m = None
+                
+    # initialize to avoid NameError
+m = None
 
-    try:
-        if not spoll:
+try:
+    if not spoll:
         message = msg
         if message.text.startswith("/"):
             return
@@ -1761,19 +1762,12 @@ async def auto_filter(client, msg, spoll=False):
             message_text = message.text or ""
             search = message_text.lower()
 
-            keyboard = InlineKeyboardMarkup(
-                [[InlineKeyboardButton(f'🔎 sᴇᴀʀᴄʜɪɴɢ {search}', callback_data="hiding")]]
-            )
+            # ❌ Entire sticker + searching message removed
+            # So nothing happens here now
+            pass
 
-            # ❌ Removed the first searching message
-            # try:
-            #     m = await message.reply_text(
-            #         f"🔎 Searching for: <b>{search}</b>",
-            #         reply_markup=keyboard
-            #     )
-            # except Exception as e:
-            #     logger.exception("reply_text failed: %s", e)            
-    
+except Exception as e:
+    logger.exception("search block failed: %s", e)
                 find = search.split(" ")
                 search = ""
                 removes = ["in", "upload", "series", "full",
