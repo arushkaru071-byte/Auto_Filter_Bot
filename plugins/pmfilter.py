@@ -1765,7 +1765,7 @@ async def auto_filter(client, msg, spoll=False):
     [[InlineKeyboardButton(f'🔎 sᴇᴀʀᴄʜɪɴɢ {search}', callback_data="hiding")]]
 )
 
-try:
+ try:
     m = await message.reply_text(
         f"🔎 Searching for: <b>{search}</b>",
         reply_markup=keyboard
