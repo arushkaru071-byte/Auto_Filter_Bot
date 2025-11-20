@@ -1762,16 +1762,16 @@ async def auto_filter(client, msg, spoll=False):
                 search = message_text.lower()
 
                 keyboard = InlineKeyboardMarkup(
-    [[InlineKeyboardButton(f'🔎 sᴇᴀʀᴄʜɪɴɢ {search}', callback_data="hiding")]]
-)
+                    [[InlineKeyboardButton(f'🔎 sᴇᴀʀᴄʜɪɴɢ {search}', callback_data="hiding")]]
+                )
 
- try:
-    m = await message.reply_text(
-        f"🔎 Searching for: <b>{search}</b>",
-        reply_markup=keyboard
-    )
-except Exception as e:
-    logger.exception("reply_text failed: %s", e)
+                try:
+                    m = await message.reply_text(
+                        f"🔎 Searching for: <b>{search}</b>",
+                        reply_markup=keyboard
+                    )
+                except Exception as e:
+                    logger.exception("reply_text failed: %s", e)
 
                 find = search.split(" ")
                 search = ""
