@@ -1725,7 +1725,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_reply_markup(reply_markup)
     await query.answer(MSG_ALRT)
 
-
 async def auto_filter(client, msg, spoll=False):
     """
     Core auto_filter logic with timing/debug logging removed.
@@ -1746,41 +1745,57 @@ async def auto_filter(client, msg, spoll=False):
         except Exception:
             # ignore scheduling errors
             pass
-      
-                
+
     # initialize to avoid NameError
-m = None
+    m = None
 
-try:
-    if not spoll:
-        message = msg
-        if message.text.startswith("/"):
-            return
-        if re.findall(r"((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
-            return
-        if len(message.text) < 100:
-            message_text = message.text or ""
-            search = message_text.lower()
+    try:
+        if not spoll:
+            message = msg
 
-            # ❌ Entire sticker + searching message removed
-            # So nothing happens here now
-            pass
+            if message.text.startswith("/"):
+                return
 
-except Exception as e:
-    logger.exception("search block failed: %s", e)
-                find = search.split(" ")
-                search = ""
-                removes = ["in", "upload", "series", "full",
-                           "horror", "thriller", "mystery", "print", "file"]
-                for x in find:
-                    if x in removes:
-                        continue
-                    else:
-                        search = search + x + " "
-                search = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)", "", search, flags=re.IGNORECASE)
-                search = re.sub(r"\s+", " ", search).strip()
-                search = search.replace("-", " ")
-                search = search.replace(":", "")
+            if re.findall(r"((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
+                return
+
+            if len(message.text) < 100:
+                message_text = message.text or ""
+                search = message_text.lower()
+
+                # searching UI removed
+                pass
+
+    except Exception as e:
+        logger.exception("search block failed: %s", e)
+
+    # -------------------------
+    # ✅ This block MUST be OUTSIDE the try/except
+    # -------------------------
+    find = search.split(" ")
+    search = ""
+    removes = [
+        "in", "upload", "series", "full", "horror", "thriller", "mystery",
+        "print", "file"
+    ]
+
+    for x in find:
+        if x in removes:
+            continue
+        else:
+            search = search + x + " "
+
+    search = re.sub(
+        r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|bro|bruh|broh|helo|that|find|dubbed|link|venum|iruka|pannunga|pannungga|anuppunga|anupunga|anuppungga|anupungga|film|undo|kitti|kitty|tharu|kittumo|kittum|movie|any(one)|with\ssubtitle(s)?)",
+        "",
+        search,
+        flags=re.IGNORECASE
+    )
+
+    search = re.sub(r"\s+", " ", search).strip()
+    search = search.replace("-", " ")
+    search = search.replace(":", "")
+
 
                 files, offset, total_results = await get_search_results(message.chat.id, search, offset=0, filter=True)
 
