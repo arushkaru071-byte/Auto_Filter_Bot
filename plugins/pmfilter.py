@@ -1611,7 +1611,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer(f'You Have: {referdb.get_refer_points(query.from_user.id)} Refferal points.', show_alert=True)
 
     elif query.data == "disclaimer":
-    bottons = [[
+    buttons = [[
         InlineKeyboardButton("⇋ ʙᴀᴄᴋ ⇋", callback_data="about")
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
