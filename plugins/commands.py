@@ -101,26 +101,24 @@ async def start(client, message):
         buttons = [[
                     InlineKeyboardButton('⇉ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⇇', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
                 ],[
-                    InlineKeyboardButton('𖦹 Hᴇʟᴘ 𖦹', callback_data='help'),
-                    InlineKeyboardButton('𖦹 Aʙᴏᴜᴛ 𖦹', callback_data='about')
+                    InlineKeyboardButton('Hᴇʟᴘ', callback_data='help'),
+                    InlineKeyboardButton('Aʙᴏᴜᴛ', callback_data='about')
                 ],[
-                    InlineKeyboardButton('✰Tᴏᴘ Sᴇᴀʀᴄʜɪɴɢ✰', callback_data="topsearch"),
-                    InlineKeyboardButton('≛ Mᴏᴠɪᴇ Gʀᴏᴜᴘ ≛', url='https://t.me/Cinema_Lokam_Movies_Group'),
-                ],[
-                    InlineKeyboardButton('🔍 Fɪɴᴅ Mᴏᴠɪᴇs Hᴇʀᴇ 🔍', switch_inline_query_current_chat="")
+                    InlineKeyboardButton('Tᴏᴘ Sᴇᴀʀᴄʜɪɴɢ', callback_data="topsearch"),
+                    InlineKeyboardButton('Mᴏᴠɪᴇ Gʀᴏᴜᴘ', url='https://t.me/Cinema_Lokam_Movies_Group')
                  ]]
                     
         reply_markup = InlineKeyboardMarkup(buttons)
         current_time = datetime.now(pytz.timezone(TIMEZONE))
         curr_time = current_time.hour        
         if curr_time < 12:
-            gtxt = "𝐺𝑜𝑜𝑑 𝑀𝑜𝑟𝑛𝑖𝑛𝑔 🌞" 
+            gtxt = "𝐺𝑜𝑜𝑑 𝑀𝑜𝑟𝑛𝑖𝑛𝑔 " 
         elif curr_time < 17:
-            gtxt = "𝐺𝑜𝑜𝑑 𝐴𝑓𝑡𝑒𝑟𝑛𝑜𝑜𝑛 🌓" 
+            gtxt = "𝐺𝑜𝑜𝑑 𝐴𝑓𝑡𝑒𝑟𝑛𝑜𝑜𝑛 " 
         elif curr_time < 21:
-            gtxt = "𝐺𝑜𝑜𝑑 𝐸𝑣𝑒𝑛𝑖𝑛𝑔 🌘"
+            gtxt = "𝐺𝑜𝑜𝑑 𝐸𝑣𝑒𝑛𝑖𝑛𝑔 "
         else:
-            gtxt = "𝐺𝑜𝑜𝑑 𝑁𝑖𝑔ℎ𝑡 🌑"
+            gtxt = "𝐺𝑜𝑜𝑑 𝑁𝑖𝑔ℎ𝑡 "
         m=await message.reply_sticker("CAACAgUAAxkBAAIC6Gg3TmWNmLphliv-9GCPsdn5mICBAAIEAAPBJDExieUdbguzyBAeBA")
         await asyncio.sleep(0.4)
         await m.delete()        
@@ -136,25 +134,23 @@ async def start(client, message):
         buttons = [[
                     InlineKeyboardButton('⇉ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⇇', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
                 ],[
-                    InlineKeyboardButton('𖦹 Hᴇʟᴘ 𖦹', callback_data='help'),
-                    InlineKeyboardButton('𖦹 Aʙᴏᴜᴛ 𖦹', callback_data='about')
+                    InlineKeyboardButton('Hᴇʟᴘ', callback_data='help'),
+                    InlineKeyboardButton('Aʙᴏᴜᴛ', callback_data='about')
                 ],[
-                    InlineKeyboardButton('✰Tᴏᴘ Sᴇᴀʀᴄʜɪɴɢ✰', callback_data="topsearch"),
-                    InlineKeyboardButton('≛ Mᴏᴠɪᴇ Gʀᴏᴜᴘ ≛', url='https://t.me/Cinema_Lokam_Movies_Group'),
-                ],[
-                    InlineKeyboardButton('🔍 Fɪɴᴅ Mᴏᴠɪᴇs Hᴇʀᴇ 🔍', switch_inline_query_current_chat="")
+                    InlineKeyboardButton('Tᴏᴘ Sᴇᴀʀᴄʜɪɴɢ', callback_data="topsearch"),
+                    InlineKeyboardButton('Mᴏᴠɪᴇ Gʀᴏᴜᴘ ', url='https://t.me/Cinema_Lokam_Movies_Group')
                  ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         current_time = datetime.now(pytz.timezone(TIMEZONE))
         curr_time = current_time.hour        
         if curr_time < 12:
-            gtxt = "𝐺𝑜𝑜𝑑 𝑀𝑜𝑟𝑛𝑖𝑛𝑔 🌞" 
+            gtxt = "𝐺𝑜𝑜𝑑 𝑀𝑜𝑟𝑛𝑖𝑛𝑔 " 
         elif curr_time < 17:
-            gtxt = "𝐺𝑜𝑜𝑑 𝐴𝑓𝑡𝑒𝑟𝑛𝑜𝑜𝑛 🌓" 
+            gtxt = "𝐺𝑜𝑜𝑑 𝐴𝑓𝑡𝑒𝑟𝑛𝑜𝑜𝑛 " 
         elif curr_time < 21:
-            gtxt = "𝐺𝑜𝑜𝑑 𝐸𝑣𝑒𝑛𝑖𝑛𝑔 🌘"
+            gtxt = "𝐺𝑜𝑜𝑑 𝐸𝑣𝑒𝑛𝑖𝑛𝑔 "
         else:
-            gtxt = "𝐺𝑜𝑜𝑑 𝑁𝑖𝑔ℎ𝑡 🌑"
+            gtxt = "𝐺𝑜𝑜𝑑 𝑁𝑖𝑔ℎ𝑡 "
         m=await message.reply_sticker("CAACAgUAAxkBAAIC6Gg3TmWNmLphliv-9GCPsdn5mICBAAIEAAPBJDExieUdbguzyBAeBA")
         await asyncio.sleep(0.4)
         await m.delete()        
