@@ -1608,34 +1608,37 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
 
     elif query.data == "ref_point":
-        await query.answer(f'You Have: {referdb.get_refer_points(query.from_user.id)} Refferal points.', show_alert=True)
+        await query.answer(
+            f'You Have: {referdb.get_refer_points(query.from_user.id)} Referral points.',
+            show_alert=True
+        )
 
     elif query.data == "disclaimer":
         buttons = [[
-        InlineKeyboardButton("⇋ ʙᴀᴄᴋ ⇋", callback_data="about")
-    ]]
-    reply_markup = InlineKeyboardMarkup(buttons)
+            InlineKeyboardButton("⇋ ʙᴀᴄᴋ ⇋", callback_data="about")
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
 
-    try:
-        await client.edit_message_media(
-            query.message.chat.id,
-            query.message.id,
-            InputMediaPhoto(random.choice(PICS))
-        )
-    except Exception:
-        pass
+        try:
+           await client.edit_message_media(
+               query.message.chat.id,
+               query.message.id,
+               InputMediaPhoto(random.choice(PICS))
+           )
+       except Exception:
+           pass
 
-    await query.message.edit_text(text="▣ ▢ ▢")
-    await query.message.edit_text(text="▣ ▣ ▢")
-    await query.message.edit_text(text="▣ ▣ ▣")
+           await query.message.edit_text(text="▣ ▢ ▢")
+           await query.message.edit_text(text="▣ ▣ ▢")
+           await query.message.edit_text(text="▣ ▣ ▣")
 
-    await query.message.edit_text(
-        text=script.DISCLAIMER_TXT,
-        reply_markup=reply_markup,
-        parse_mode=enums.ParseMode.HTML
-      )
+           await query.message.edit_text(
+               text=script.DISCLAIMER_TXT,
+               reply_markup=reply_markup,
+               parse_mode=enums.ParseMode.HTML
+           )
 
-    elif query.data == "premium_info":
+     elif query.data == "premium_info":
         try:
             btn = [[
                 InlineKeyboardButton('• ʙᴜʏ ᴘʀᴇᴍɪᴜᴍ •', callback_data='buy_info'),
