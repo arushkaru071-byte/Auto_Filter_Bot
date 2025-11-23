@@ -1626,30 +1626,26 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer(f'You Have: {referdb.get_refer_points(query.from_user.id)} Refferal points.', show_alert=True)
 
     elif query.data == "disclaimer":
-            btn = [[
-                    InlineKeyboardButton("⇋ ʙᴀᴄᴋ ⇋", callback_data="about")
-                  ]]
-            reply_markup = InlineKeyboardMarkup(buttons)
-        await client.edit_message_media(
-            query.message.chat.id, 
-            query.message.id, 
-            InputMediaPhoto(random.choice(PICS))
+    btn = [[
+        InlineKeyboardButton("⇋ ʙᴀᴄᴋ ⇋", callback_data="about")
+    ]]
+    reply_markup = InlineKeyboardMarkup(btn)
+
+    await client.edit_message_media(
+        query.message.chat.id,
+        query.message.id,
+        InputMediaPhoto(random.choice(PICS))
+    )
+
+    await query.message.edit_text(text="▣ ▢ ▢")
+    await query.message.edit_text(text="▣ ▣ ▢")
+    await query.message.edit_text(text="▣ ▣ ▣")
+
+    await query.message.edit_text(
+        text=script.DISCLAIMER_TXT,
+        reply_markup=reply_markup,
+        parse_mode=enums.ParseMode.HTML
         )
-        await query.message.edit_text(
-            text="▣ ▢ ▢"
-        )
-        await query.message.edit_text(
-            text="▣ ▣ ▢"
-        )
-        await query.message.edit_text(
-            text="▣ ▣ ▣"
-        )
-            reply_markup = InlineKeyboardMarkup(btn)
-            await query.message.edit_text(
-                text=(script.DISCLAIMER_TXT),
-                reply_markup=reply_markup,
-                parse_mode=enums.ParseMode.HTML
-            )
 
     elif query.data == "premium_info":
         try:
