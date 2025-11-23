@@ -1450,11 +1450,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
         buttons = [[
                     InlineKeyboardButton('⇉ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⇇', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
                 ],[
-                    InlineKeyboardButton('𖦹 Hᴇʟᴘ 𖦹', callback_data='help'),
-                    InlineKeyboardButton('𖦹 Aʙᴏᴜᴛ 𖦹', callback_data='about')
+                    InlineKeyboardButton(' Hᴇʟᴘ ', callback_data='help'),
+                    InlineKeyboardButton('Aʙᴏᴜᴛ ', callback_data='about')
                 ],[
-                    InlineKeyboardButton('✰Tᴏᴘ Sᴇᴀʀᴄʜɪɴɢ✰', callback_data="topsearch"),
-                    InlineKeyboardButton('≛ Mᴏᴠɪᴇ Gʀᴏᴜᴘ ≛', url='https://t.me/Cinema_Lokam_Movies_Group'),
+                    InlineKeyboardButton('Tᴏᴘ Sᴇᴀʀᴄʜɪɴɢ', callback_data="topsearch"),
+                    InlineKeyboardButton(' Mᴏᴠɪᴇ Gʀᴏᴜᴘ ', url='https://t.me/Cinema_Lokam_Movies_Group'),
                 ],[
                     InlineKeyboardButton('🔍 Fɪɴᴅ Mᴏᴠɪᴇs Hᴇʀᴇ 🔍', switch_inline_query_current_chat="")
                  ]]
@@ -1558,11 +1558,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.message.edit_text(
             text="▣ ▣ ▣"
         )
-        await query.message.edit_text(                     
-            text=script.HELP_TXT.format(query.from_user.mention),
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )
         await query.message.edit_text(
             text=script.ABOUT_TXT.format(temp.U_NAME, temp.B_NAME, OWNER_LNK),
             reply_markup=reply_markup,
@@ -1623,11 +1618,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.message.edit_text(
             text="▣ ▣ ▣"
         )
-        await query.message.edit_text(                     
-            text=script.HELP_TXT.format(query.from_user.mention),
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
             text=script.SOURCE_TXT,
@@ -1642,26 +1632,21 @@ async def cb_handler(client: Client, query: CallbackQuery):
             btn = [[
                     InlineKeyboardButton("⇋ ʙᴀᴄᴋ ⇋", callback_data="about")
                   ]]
-        reply_markup = InlineKeyboardMarkup(btn)
-        await client.edit_message_media(
-            query.message.chat.id, 
-            query.message.id, 
-            InputMediaPhoto(random.choice(PICS))
-        )
-        await query.message.edit_text(
-            text="▣ ▢ ▢"
-        )
-        await query.message.edit_text(
-            text="▣ ▣ ▢"
-        )
-        await query.message.edit_text(
-            text="▣ ▣ ▣"
-        )
-        await query.message.edit_text(                     
-            text=script.HELP_TXT.format(query.from_user.mention),
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-)
+            reply_markup = InlineKeyboardMarkup(buttons)
+            await client.edit_message_media(
+                query.message.chat.id, 
+                query.message.id, 
+                InputMediaPhoto(random.choice(PICS))
+            )
+            await query.message.edit_text(
+                text="▣ ▢ ▢"
+            )
+            await query.message.edit_text(
+                text="▣ ▣ ▢"
+            )
+            await query.message.edit_text(
+                text="▣ ▣ ▣"
+            )
             reply_markup = InlineKeyboardMarkup(btn)
             await query.message.edit_text(
                 text=(script.DISCLAIMER_TXT),
