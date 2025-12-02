@@ -219,13 +219,12 @@ Nᴀᴍᴇ : {}
 
 Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
     
-    CAPTION = """"<blockquote><b>📁 Fɪʟᴇ Nᴀᴍᴇ: 📄 <code>{file_name}</code>
+    CAPTION = """<blockquote><b>📁 Fɪʟᴇ Nᴀᴍᴇ: 📄 <code>{file_name}</code>
 
-💾 Fɪʟᴇ Sɪᴢᴇ:  📦<code>{file_size}</code>
+💾 Fɪʟᴇ Sɪᴢᴇ:  📦 <code>{file_size}</code>
 
-
- <a href="https://t.me/Cinema_Updates_OTT">[⚡ Jᴏɪɴ ᴄɪɴᴇᴍᴀ ʟᴏᴋᴀᴍ ⚡]</a></blockquote>"""
-
+<a href="https://t.me/Cinema_Updates_OTT">[⚡ Jᴏɪɴ ᴄɪɴᴇᴍᴀ ʟᴏᴋᴀᴍ ⚡]</a></b></blockquote>
+"""
     
     MOVIE_UPDATE_NOTIFY_TXT = """
 </b><a href={poster_url}>📥</a><a href={imdb_url}>New {tag} Added</a></b>
