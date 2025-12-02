@@ -219,9 +219,9 @@ Nᴀᴍᴇ : {}
 
 Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
     
-    CAPTION = """"<blockquote><b>📁 Fɪʟᴇ Nᴀᴍᴇ: 📄 <code>{filename}</code>
+    CAPTION = """"<blockquote><b>📁 Fɪʟᴇ Nᴀᴍᴇ: 📄 <code>{file_name}</code>
 
-💾 Fɪʟᴇ Sɪᴢᴇ:  📦<code>{size}</code>
+💾 Fɪʟᴇ Sɪᴢᴇ:  📦<code>{file_size}</code>
 
 
  <a href="https://t.me/Cinema_Updates_OTT">[⚡ Jᴏɪɴ ᴄɪɴᴇᴍᴀ ʟᴏᴋᴀᴍ ⚡]</a></blockquote>"""
