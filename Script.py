@@ -219,12 +219,12 @@ Nᴀᴍᴇ : {}
 
 Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
     
-    CAPTION = """"<b>📂 ғɪʟᴇɴᴀᴍᴇ : {file_name}
-    🗃️ sɪᴢᴇ : {file_size} 
+    CAPTION = """"<blockquote><b>📁 Fɪʟᴇ Nᴀᴍᴇ: 📄 <code>{filename}</code>
 
-╔═══ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ═══╗ 
-➲ <a href=https://t.me/Cinema_Lokam_Movies_Group> @Cinema_Lokam </a>
-╚═══ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ═══╝</b>"""
+💾 Fɪʟᴇ Sɪᴢᴇ:  📦<code>{size}</code>
+
+
+ <a href="https://t.me/Cinema_Updates_OTT">[⚡ Jᴏɪɴ ᴄɪɴᴇᴍᴀ ʟᴏᴋᴀᴍ ⚡]</a></blockquote>"""
 
     
     MOVIE_UPDATE_NOTIFY_TXT = """
